@@ -43,3 +43,18 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 30 source files checked.
   - `pytest`: 9 passed, 1 upstream FastAPI/TestClient deprecation warning.
+- Continued Phase 2 profile/evidence implementation:
+  - Added `GET/POST /profiles/{profile_id}/employment`.
+  - Added `GET/POST /profiles/{profile_id}/education`.
+  - Added `GET/POST /profiles/{profile_id}/projects`.
+  - Added `GET /profiles/{profile_id}/review-queue`.
+  - Added `PATCH /records/{record_type}/{record_id}/verification`.
+  - Added `DELETE /records/{record_type}/{record_id}` with soft deletion.
+  - Added profile workbook export/import service and `python -m scripts.tasks export-profile`.
+  - Added editable Streamlit controls for profile, achievements, evidence, and review verification.
+- Validation result after expanded Phase 2 slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 32 source files checked.
+  - `pytest`: 10 passed, 1 upstream FastAPI/TestClient deprecation warning.
+  - Demo CRM XLSX export and profile workbook export generated successfully.

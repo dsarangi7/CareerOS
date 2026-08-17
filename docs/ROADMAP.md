@@ -1,6 +1,7 @@
 # Roadmap
 
-- Complete remaining CRUD APIs and editable Streamlit forms for profile/evidence.
+- Add update-by-field endpoints for profile/evidence records beyond verification status.
+- Add CSV import/export commands for profile/evidence tables.
 - Add import parsers for text, PDF, CSV, XLSX, and JSON job descriptions.
 - Add duplicate detection and CRM analytics.
 - Add CV generation, claim validation, and PDF rendering.

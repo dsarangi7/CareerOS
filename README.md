@@ -10,6 +10,7 @@ python -m scripts.tasks setup
 python -m scripts.tasks migrate
 python -m scripts.tasks seed
 python -m scripts.tasks validate
+python -m scripts.tasks export-profile
 ```
 
 Run the API:

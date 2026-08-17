@@ -14,6 +14,7 @@ from app.db.base import SessionLocal, create_all
 from app.models.entities import (
     Application,
     AuditEvent,
+    CandidateProfile,
     Company,
     FollowUp,
     Interview,
@@ -29,6 +30,7 @@ from app.services.jobs import (
     transition_job,
 )
 from app.services.profile import seed_candidate_profile
+from app.services.profile_io import export_profile_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -272,19 +274,31 @@ def export_demo() -> Path:
     return output
 
 
+def export_profile() -> Path:
+    create_all()
+    seed()
+    output = ROOT / "data" / "exports" / "career_os_profile_export.xlsx"
+    with SessionLocal() as session:
+        profile = session.scalar(select(CandidateProfile).order_by(CandidateProfile.created_at))
+        if profile is None:
+            raise RuntimeError("Seed profile not found")
+        return export_profile_workbook(session, profile.id, output)
+
+
 def validate() -> None:
     run([sys.executable, "-m", "ruff", "format", "--check", "."])
     run([sys.executable, "-m", "ruff", "check", "."])
     run([sys.executable, "-m", "mypy", "app", "scripts", "tests"])
     run([sys.executable, "-m", "pytest"])
     export_demo()
+    export_profile()
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command",
-        choices=["setup", "migrate", "seed", "validate", "export-demo"],
+        choices=["setup", "migrate", "seed", "validate", "export-demo", "export-profile"],
     )
     args = parser.parse_args()
     if args.command == "setup":
@@ -297,6 +311,9 @@ def main() -> None:
         validate()
     elif args.command == "export-demo":
         output = export_demo()
+        print(output)
+    elif args.command == "export-profile":
+        output = export_profile()
         print(output)
 
 

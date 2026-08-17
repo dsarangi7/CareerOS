@@ -64,5 +64,19 @@ def test_profile_skill_achievement_evidence_crud_api() -> None:
         list_response = client.get(f"/profiles/{profile_id}/achievements")
         assert list_response.status_code == 200
         assert any(item["id"] == achievement_id for item in list_response.json())
+
+        verification_response = client.patch(
+            f"/records/achievements/{achievement_id}/verification",
+            json={"verification_status": "verified"},
+        )
+        assert verification_response.status_code == 200
+        assert verification_response.json()["verification_status"] == "verified"
+
+        queue_response = client.get(f"/profiles/{profile_id}/review-queue")
+        assert queue_response.status_code == 200
+        assert "skills" in queue_response.json()
+
+        delete_response = client.delete(f"/records/achievements/{achievement_id}")
+        assert delete_response.status_code == 204
     finally:
         app.dependency_overrides.clear()
