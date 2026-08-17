@@ -65,6 +65,38 @@ Run the dashboard:
 python -m streamlit run dashboard/Home.py
 ```
 
+## Windows Launcher
+
+Create and install the virtual environment first:
+
+```powershell
+cd G:\AI_WORKSPACE\CareerOS
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install .
+```
+
+Start both local services safely:
+
+```powershell
+.\start-careeros.ps1
+```
+
+The launcher verifies `.venv`, checks dependencies, runs migrations, starts FastAPI on `127.0.0.1:8000`, starts Streamlit on `127.0.0.1:8501`, waits for both services, and opens `http://localhost:8501`.
+
+Stop only the processes started by the launcher:
+
+```powershell
+.\stop-careeros.ps1
+```
+
+If PowerShell blocks local scripts, run this once for the current shell:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
 ## Current Scope
 
 Phases 1-7 are implemented as local-first vertical slices: profile/evidence management, job ingestion and scoring, application workflow, tailored CV generation, guarded agents, CRM reporting, workbook export, and security/privacy hardening checks.
