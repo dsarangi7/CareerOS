@@ -6,4 +6,5 @@
 - Add CRM analytics and scoring dashboard views.
 - Improve CV templates, layout polish, and richer claim-to-evidence review UI.
 - Add version comparison and explicit CV publish approval workflow.
-- Add mock and OpenAI-backed agent adapters.
+- Expand OpenAI-backed agent adapter with live structured-output execution once credentials are explicitly configured.
+- Add richer tracing dashboards for agent runs and validation results.

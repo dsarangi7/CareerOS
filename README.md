@@ -30,6 +30,14 @@ python -m scripts.tasks import-jobs --path path\to\jobs.csv
 
 Generate a tailored CV draft through `POST /opportunities/{job_id}/tailored-cv`; generated CVs stay local and require human approval before publishing or sharing.
 
+Inspect and run local mock agents:
+
+```powershell
+python -m pytest tests/unit/test_phase5_agents.py
+```
+
+The default agent provider is `mock`; OpenAI integration is optional and configured through environment variables.
+
 Run the dashboard:
 
 ```powershell

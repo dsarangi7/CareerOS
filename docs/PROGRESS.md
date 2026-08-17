@@ -122,3 +122,24 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 41 source files checked.
   - `pytest`: 15 passed, 1 upstream FastAPI/TestClient deprecation warning.
+
+### Phase 5
+
+- Completed first agent integration layer:
+  - Added typed definitions for all 12 requested agents.
+  - Added `AgentInput`, `AgentOutput`, and `AgentResult` contracts.
+  - Added deterministic mock adapter for local tests and demos.
+  - Added optional OpenAI Agents SDK adapter behind configuration; default remains `mock`.
+  - Added structured-output validation and malformed-output rejection.
+  - Added prompt-injection neutralization for untrusted payload text.
+  - Added low-confidence routing to manual review.
+  - Added external-write action detection and `HumanApproval` request creation.
+  - Added `AgentRun` records for traceability.
+  - Added `ValidationResult` records for failed or review-needed agent outputs.
+  - Added `GET /agents/definitions`.
+  - Added `POST /agents/run`.
+- Validation result after Phase 5 slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 48 source files checked.
+  - `pytest`: 22 passed, 1 upstream FastAPI/TestClient deprecation warning.

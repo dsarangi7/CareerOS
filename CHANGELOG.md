@@ -13,3 +13,4 @@
 - Added CSV, XLSX, and JSON job import service and CLI command using the deterministic ingestion pipeline.
 - Completed a practical Phase 3 CRM workflow bridge with application creation, ready-to-apply, and approval-gated applied status.
 - Completed first Phase 4 tailored CV generation slice with claim validation, PDF rendering, validation results, and human approval request records.
+- Completed first Phase 5 agent integration slice with typed contracts, mock adapter, optional OpenAI adapter, guardrails, tracing records, and agent API endpoints.

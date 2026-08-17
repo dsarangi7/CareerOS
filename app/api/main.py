@@ -4,6 +4,8 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.agents.contracts import AgentInput
+from app.agents.orchestrator import list_agent_definitions, run_agent
 from app.core.config import get_settings
 from app.core.enums import ApprovalStatus, VerificationStatus
 from app.db.base import get_session
@@ -24,6 +26,7 @@ from app.models.entities import (
     SponsorshipAssessment,
     TailoredCV,
 )
+from app.schemas.agents import AgentRunRequest, AgentRunResponse
 from app.schemas.cv import ClaimValidationReport, TailoredCVRead, TailoredCVRequest
 from app.schemas.evidence import (
     AchievementCreate,
@@ -94,6 +97,18 @@ SessionDep = Annotated[Session, Depends(get_session)]
 def health() -> dict[str, str]:
     settings = get_settings()
     return {"status": "ok", "env": settings.env}
+
+
+@app.get("/agents/definitions")
+def get_agent_definitions() -> list[dict[str, object]]:
+    return list_agent_definitions()
+
+
+@app.post("/agents/run", response_model=AgentRunResponse)
+def post_agent_run(payload: AgentRunRequest, session: SessionDep) -> object:
+    result = run_agent(session, AgentInput.model_validate(payload.model_dump()))
+    session.commit()
+    return result
 
 
 @app.get("/profile", response_model=CandidateProfileRead)

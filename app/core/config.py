@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./career_os.db"
     log_level: str = "INFO"
     max_upload_mb: int = Field(default=10, ge=1, le=100)
+    agent_provider: str = "mock"
+    openai_model: str = "gpt-5"
 
 
 @lru_cache

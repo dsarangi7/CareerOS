@@ -46,3 +46,10 @@ python -m pytest tests/integration/test_phase4_cv_generation.py
 ```
 
 The CV test renders a PDF with ReportLab and validates that pypdf can extract readable text.
+
+Phase 5 agent contracts and guardrails are covered by:
+
+```powershell
+python -m pytest tests/unit/test_phase5_agents.py
+python -m pytest tests/integration/test_phase5_agent_api.py
+```
