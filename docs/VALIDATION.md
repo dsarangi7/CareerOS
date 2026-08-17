@@ -38,3 +38,11 @@ python -m scripts.tasks import-jobs --path data/fixtures/jobs.csv
 ```
 
 Supported file types for this command are CSV, XLSX, and JSON.
+
+Phase 4 CV generation is covered by:
+
+```powershell
+python -m pytest tests/integration/test_phase4_cv_generation.py
+```
+
+The CV test renders a PDF with ReportLab and validates that pypdf can extract readable text.

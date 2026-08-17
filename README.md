@@ -28,6 +28,8 @@ Import jobs from a local CSV, XLSX, or JSON file:
 python -m scripts.tasks import-jobs --path path\to\jobs.csv
 ```
 
+Generate a tailored CV draft through `POST /opportunities/{job_id}/tailored-cv`; generated CVs stay local and require human approval before publishing or sharing.
+
 Run the dashboard:
 
 ```powershell

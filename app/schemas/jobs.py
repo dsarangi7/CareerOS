@@ -71,3 +71,16 @@ class JobIngestionResult(BaseModel):
     requirements: list[JobRequirementRead]
     sponsorship: SponsorshipAssessmentRead
     fit_assessment: FitAssessmentRead
+
+
+class ApplicationRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    job_id: str
+    status: JobStatus
+    applied_at: object | None
+
+
+class ApprovalCreate(BaseModel):
+    rationale: str = "Approved in local CareerOS workflow."

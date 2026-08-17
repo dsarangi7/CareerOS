@@ -96,3 +96,29 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 35 source files checked.
   - `pytest`: 13 passed, 1 upstream FastAPI/TestClient deprecation warning.
+- Completed practical Phase 3 CRM bridge:
+  - Added shortlist workflow endpoint: `POST /opportunities/{job_id}/shortlist`.
+  - Added local application creation endpoint: `POST /opportunities/{job_id}/application`.
+  - Added ready-to-apply endpoint: `POST /applications/{application_id}/ready`.
+  - Added approval-gated applied simulation: `POST /applications/{application_id}/mark-applied`.
+  - Added application events and audit trail records for local workflow changes.
+
+### Phase 4
+
+- Completed first CV generation vertical slice:
+  - Added deterministic tailored CV generation service.
+  - Added base CV version creation.
+  - Added verified-claim selection from achievement/evidence records.
+  - Added claim validation summary with supported claims, unsupported claims, risks, and required confirmations.
+  - Added HTML CV draft output stored in `TailoredCV.source_text`.
+  - Added ReportLab PDF rendering fallback with pypdf text-readability validation.
+  - Added `ValidationResult` records for tailored CV checks.
+  - Added `HumanApproval` request before any CV publishing/sharing action.
+  - Added `POST /opportunities/{job_id}/tailored-cv`.
+  - Added `GET /tailored-cvs/{tailored_cv_id}`.
+  - Added `GET /tailored-cvs/{tailored_cv_id}/claim-validation`.
+- Validation result after Phase 4 slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 41 source files checked.
+  - `pytest`: 15 passed, 1 upstream FastAPI/TestClient deprecation warning.

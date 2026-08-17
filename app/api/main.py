@@ -5,21 +5,26 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
-from app.core.enums import VerificationStatus
+from app.core.enums import ApprovalStatus, VerificationStatus
 from app.db.base import get_session
+from app.document_generation.cv import CVGenerationError, generate_tailored_cv
 from app.models.entities import (
     Achievement,
+    Application,
     CandidateProfile,
     EducationRecord,
     EmploymentRecord,
     EvidenceRecord,
+    HumanApproval,
     JobFitAssessment,
     JobOpportunity,
     JobRequirement,
     Project,
     Skill,
     SponsorshipAssessment,
+    TailoredCV,
 )
+from app.schemas.cv import ClaimValidationReport, TailoredCVRead, TailoredCVRequest
 from app.schemas.evidence import (
     AchievementCreate,
     AchievementRead,
@@ -37,6 +42,8 @@ from app.schemas.evidence import (
     VerificationUpdate,
 )
 from app.schemas.jobs import (
+    ApplicationRead,
+    ApprovalCreate,
     FitAssessmentRead,
     JobIngestionRequest,
     JobIngestionResult,
@@ -46,6 +53,13 @@ from app.schemas.jobs import (
     SponsorshipAssessmentRead,
 )
 from app.schemas.profile import CandidateProfileRead
+from app.services.applications import (
+    ApplicationWorkflowError,
+    create_application_for_job,
+    mark_applied_with_approval,
+    mark_ready_to_apply,
+    shortlist_job,
+)
 from app.services.evidence import (
     AchievementNotFoundError,
     InvalidRecordUpdateError,
@@ -158,6 +172,106 @@ def get_job_fit(job_id: str, session: SessionDep) -> JobFitAssessment:
     if assessment is None:
         raise HTTPException(status_code=404, detail="Fit assessment not found")
     return assessment
+
+
+@app.post("/opportunities/{job_id}/shortlist", response_model=JobOpportunityRead)
+def post_shortlist(job_id: str, session: SessionDep) -> JobOpportunity:
+    job = session.get(JobOpportunity, job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    try:
+        shortlist_job(session, job)
+    except ApplicationWorkflowError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    session.commit()
+    return job
+
+
+@app.post("/opportunities/{job_id}/application", response_model=ApplicationRead, status_code=201)
+def post_application(job_id: str, session: SessionDep) -> Application:
+    job = session.get(JobOpportunity, job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    try:
+        application = create_application_for_job(session, job)
+    except ApplicationWorkflowError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    session.commit()
+    return application
+
+
+@app.post("/applications/{application_id}/ready", response_model=ApplicationRead)
+def post_application_ready(application_id: str, session: SessionDep) -> Application:
+    application = session.get(Application, application_id)
+    if application is None:
+        raise HTTPException(status_code=404, detail="Application not found")
+    try:
+        mark_ready_to_apply(session, application)
+    except ApplicationWorkflowError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    session.commit()
+    return application
+
+
+@app.post("/applications/{application_id}/mark-applied", response_model=ApplicationRead)
+def post_application_applied(
+    application_id: str, payload: ApprovalCreate, session: SessionDep
+) -> Application:
+    application = session.get(Application, application_id)
+    if application is None:
+        raise HTTPException(status_code=404, detail="Application not found")
+    approval = HumanApproval(
+        action_type="submit_application",
+        subject_type="JobOpportunity",
+        subject_id=application.job_id,
+        status=ApprovalStatus.APPROVED,
+        rationale=payload.rationale,
+    )
+    session.add(approval)
+    session.flush()
+    try:
+        mark_applied_with_approval(session, application, approval)
+    except ApplicationWorkflowError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    session.commit()
+    return application
+
+
+@app.post("/opportunities/{job_id}/tailored-cv", response_model=TailoredCVRead, status_code=201)
+def post_tailored_cv(job_id: str, payload: TailoredCVRequest, session: SessionDep) -> TailoredCV:
+    try:
+        tailored = generate_tailored_cv(
+            session,
+            profile_id=payload.profile_id,
+            job_id=job_id,
+            base_version=payload.base_version,
+        )
+    except CVGenerationError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return tailored
+
+
+@app.get("/tailored-cvs/{tailored_cv_id}", response_model=TailoredCVRead)
+def get_tailored_cv(tailored_cv_id: str, session: SessionDep) -> TailoredCV:
+    tailored = session.get(TailoredCV, tailored_cv_id)
+    if tailored is None:
+        raise HTTPException(status_code=404, detail="Tailored CV not found")
+    return tailored
+
+
+@app.get("/tailored-cvs/{tailored_cv_id}/claim-validation", response_model=ClaimValidationReport)
+def get_tailored_cv_claim_validation(tailored_cv_id: str, session: SessionDep) -> dict[str, object]:
+    tailored = session.get(TailoredCV, tailored_cv_id)
+    if tailored is None:
+        raise HTTPException(status_code=404, detail="Tailored CV not found")
+    summary = tailored.validation_summary
+    return {
+        "tailored_cv_id": tailored.id,
+        "unsupported_claims": summary.get("unsupported_claims", []),
+        "supported_claims": summary.get("supported_claims", []),
+        "required_user_confirmation": summary.get("required_user_confirmation", []),
+    }
 
 
 @app.get("/profiles/{profile_id}/employment", response_model=list[EmploymentRecordRead])

@@ -4,5 +4,6 @@
 - Add file-based job import parsers for PDF and plain text job descriptions.
 - Expand duplicate detection with normalized URL/title/company fingerprints.
 - Add CRM analytics and scoring dashboard views.
-- Add CV generation, claim validation, and PDF rendering.
+- Improve CV templates, layout polish, and richer claim-to-evidence review UI.
+- Add version comparison and explicit CV publish approval workflow.
 - Add mock and OpenAI-backed agent adapters.
