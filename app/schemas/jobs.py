@@ -12,6 +12,13 @@ class JobOpportunityCreate(BaseModel):
     source_text: str = ""
 
 
+class JobIngestionRequest(BaseModel):
+    source_text: str = Field(min_length=1)
+    source_url: str | None = None
+    default_company: str = "Unknown Company"
+    default_title: str = "Untitled Role"
+
+
 class JobOpportunityRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -22,6 +29,17 @@ class JobOpportunityRead(BaseModel):
     source_url: str | None
     status: JobStatus
     extraction_confidence: float
+    missing_information: list[str]
+
+
+class JobRequirementRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: str
+    job_id: str
+    category: str
+    text: str
+    required: bool
 
 
 class SponsorshipAssessmentRead(BaseModel):
@@ -45,3 +63,11 @@ class FitAssessmentRead(BaseModel):
     category_scores: dict[str, float]
     explanation: dict[str, object]
     confidence: float
+
+
+class JobIngestionResult(BaseModel):
+    job: JobOpportunityRead
+    duplicate_of: str | None
+    requirements: list[JobRequirementRead]
+    sponsorship: SponsorshipAssessmentRead
+    fit_assessment: FitAssessmentRead

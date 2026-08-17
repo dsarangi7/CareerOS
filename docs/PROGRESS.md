@@ -69,3 +69,20 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 32 source files checked.
   - `pytest`: 10 passed, 1 upstream FastAPI/TestClient deprecation warning.
+
+### Phase 3
+
+- Started job CRM and scoring implementation with a deterministic ingestion vertical slice:
+  - Added `POST /opportunities/ingest` for pasted job descriptions.
+  - Added deterministic field extraction for company, title, location, and country markers.
+  - Added requirement extraction into `JobRequirement` rows.
+  - Added duplicate detection by source URL and company/title.
+  - Added sponsorship classification and fit scoring during ingestion.
+  - Added `GET /opportunities/{job_id}/requirements`.
+  - Added `GET /opportunities/{job_id}/sponsorship`.
+  - Added `GET /opportunities/{job_id}/fit`.
+- Validation result after first Phase 3 slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 33 source files checked.
+  - `pytest`: 12 passed, 1 upstream FastAPI/TestClient deprecation warning.

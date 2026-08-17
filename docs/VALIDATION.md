@@ -23,3 +23,9 @@ python -m scripts.tasks export-profile-csv
 ```
 
 This writes editable CSV files to `data/exports/career_os_profile_csv/`.
+
+Phase 3 job ingestion is covered by integration tests in:
+
+```powershell
+python -m pytest tests/integration/test_job_ingestion_phase3.py
+```

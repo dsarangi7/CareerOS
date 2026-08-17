@@ -13,9 +13,12 @@ from app.models.entities import (
     EducationRecord,
     EmploymentRecord,
     EvidenceRecord,
+    JobFitAssessment,
     JobOpportunity,
+    JobRequirement,
     Project,
     Skill,
+    SponsorshipAssessment,
 )
 from app.schemas.evidence import (
     AchievementCreate,
@@ -33,7 +36,15 @@ from app.schemas.evidence import (
     SkillRead,
     VerificationUpdate,
 )
-from app.schemas.jobs import JobOpportunityCreate, JobOpportunityRead
+from app.schemas.jobs import (
+    FitAssessmentRead,
+    JobIngestionRequest,
+    JobIngestionResult,
+    JobOpportunityCreate,
+    JobOpportunityRead,
+    JobRequirementRead,
+    SponsorshipAssessmentRead,
+)
 from app.schemas.profile import CandidateProfileRead
 from app.services.evidence import (
     AchievementNotFoundError,
@@ -59,7 +70,7 @@ from app.services.evidence import (
     update_record_fields,
     update_verification_status,
 )
-from app.services.jobs import create_job
+from app.services.jobs import create_job, ingest_job_description
 
 app = FastAPI(title="CareerOS", version="0.1.0")
 SessionDep = Annotated[Session, Depends(get_session)]
@@ -97,6 +108,56 @@ def post_opportunity(payload: JobOpportunityCreate, session: SessionDep) -> JobO
     )
     session.commit()
     return job
+
+
+@app.post("/opportunities/ingest", response_model=JobIngestionResult, status_code=201)
+def ingest_opportunity(payload: JobIngestionRequest, session: SessionDep) -> dict[str, object]:
+    job, duplicate_of, requirements, sponsorship, fit = ingest_job_description(
+        session,
+        source_text=payload.source_text,
+        source_url=payload.source_url,
+        default_company=payload.default_company,
+        default_title=payload.default_title,
+    )
+    session.commit()
+    return {
+        "job": job,
+        "duplicate_of": duplicate_of,
+        "requirements": requirements,
+        "sponsorship": sponsorship,
+        "fit_assessment": fit,
+    }
+
+
+@app.get("/opportunities/{job_id}/requirements", response_model=list[JobRequirementRead])
+def get_job_requirements(job_id: str, session: SessionDep) -> list[JobRequirement]:
+    if session.get(JobOpportunity, job_id) is None:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return list(session.scalars(select(JobRequirement).where(JobRequirement.job_id == job_id)))
+
+
+@app.get("/opportunities/{job_id}/sponsorship", response_model=SponsorshipAssessmentRead)
+def get_job_sponsorship(job_id: str, session: SessionDep) -> SponsorshipAssessment:
+    assessment = session.scalar(
+        select(SponsorshipAssessment)
+        .where(SponsorshipAssessment.job_id == job_id)
+        .order_by(SponsorshipAssessment.created_at.desc())
+    )
+    if assessment is None:
+        raise HTTPException(status_code=404, detail="Sponsorship assessment not found")
+    return assessment
+
+
+@app.get("/opportunities/{job_id}/fit", response_model=FitAssessmentRead)
+def get_job_fit(job_id: str, session: SessionDep) -> JobFitAssessment:
+    assessment = session.scalar(
+        select(JobFitAssessment)
+        .where(JobFitAssessment.job_id == job_id)
+        .order_by(JobFitAssessment.created_at.desc())
+    )
+    if assessment is None:
+        raise HTTPException(status_code=404, detail="Fit assessment not found")
+    return assessment
 
 
 @app.get("/profiles/{profile_id}/employment", response_model=list[EmploymentRecordRead])

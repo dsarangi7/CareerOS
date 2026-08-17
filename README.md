@@ -20,6 +20,8 @@ Run the API:
 python -m uvicorn app.api.main:app --reload
 ```
 
+Ingest a pasted job description through `POST /opportunities/ingest`.
+
 Run the dashboard:
 
 ```powershell
