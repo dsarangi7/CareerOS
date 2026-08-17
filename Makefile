@@ -1,4 +1,4 @@
-.PHONY: setup format lint typecheck test test-unit test-integration test-e2e migrate seed run-api run-dashboard validate export-demo export-profile export-profile-csv import-jobs security-scan backup-db docker-up
+.PHONY: setup format lint typecheck test test-unit test-integration test-e2e migrate seed run-api run-dashboard validate export-demo export-profile export-profile-csv import-jobs security-scan backup-db api-smoke dashboard-smoke docker-check docker-up
 
 setup:
 	python -m scripts.tasks setup
@@ -56,6 +56,15 @@ security-scan:
 
 backup-db:
 	python -m scripts.tasks backup-db
+
+api-smoke:
+	python -m scripts.tasks api-smoke
+
+dashboard-smoke:
+	python -m scripts.tasks dashboard-smoke
+
+docker-check:
+	python -m scripts.tasks docker-check
 
 docker-up:
 	docker compose up --build

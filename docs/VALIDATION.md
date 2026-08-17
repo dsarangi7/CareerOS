@@ -68,3 +68,14 @@ Phase 7 hardening helpers are covered by:
 python -m pytest tests/unit/test_phase7_security.py
 python -m scripts.tasks security-scan
 ```
+
+Final acceptance coverage:
+
+```powershell
+python -m pytest tests/end_to_end/test_acceptance_workflow.py
+python -m scripts.tasks api-smoke
+python -m scripts.tasks dashboard-smoke
+python -m scripts.tasks docker-check
+```
+
+`docker-check` verifies Docker files and runs `docker compose config` when Docker is installed. Docker is not installed in the current Windows environment, so live container startup is documented as an environment exception.

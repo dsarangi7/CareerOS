@@ -170,3 +170,21 @@
   - `pytest`: 26 passed, 1 upstream FastAPI/TestClient deprecation warning.
   - `security-scan`: passed with no obvious secret patterns found.
   - Demo CRM XLSX export, profile workbook export, and profile CSV bundle export generated successfully.
+
+### Final Acceptance Closure
+
+- Added full synthetic end-to-end acceptance test covering profile seed, job import, requirement extraction, sponsorship, scoring, shortlisting, tailored CV generation, claim validation, approval request, applied state after simulated approval, recruiter response, interview scheduling, interview prep, outcome, weekly report, CRM XLSX export, and audit trail preservation.
+- Added missing Opportunity Detail dashboard page and dashboard page smoke validation.
+- Added API smoke validation and Docker file/config check command.
+- Added final completion report and security review documentation.
+- Docker executable was not installed on this machine, so live Docker startup was documented as an environment exception.
+- Final validation result: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 55 source files checked.
+  - `pytest`: 27 passed, 1 upstream FastAPI/TestClient deprecation warning.
+  - `security-scan`: passed with no obvious secret patterns found.
+  - `api-smoke`: passed.
+  - `dashboard-smoke`: passed.
+  - `docker-check`: Docker executable not installed; required files present and startup exception documented.
+  - Demo CRM XLSX export, profile workbook export, and profile CSV bundle export generated successfully.

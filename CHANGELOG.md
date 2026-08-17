@@ -16,3 +16,4 @@
 - Completed first Phase 5 agent integration slice with typed contracts, mock adapter, optional OpenAI adapter, guardrails, tracing records, and agent API endpoints.
 - Completed Phase 6 CRM/reporting workflows for communications, follow-ups, overdue follow-ups, interviews, interview prep packs, outcomes, weekly reports, and styled XLSX export.
 - Completed Phase 7 security/privacy hardening helpers for secret scanning, secret redaction, upload validation, local SQLite backups, validation integration, and documentation.
+- Completed final acceptance closure with full synthetic end-to-end workflow test, Opportunity Detail dashboard page, API/dashboard/Docker smoke checks, final security review, and final completion report.

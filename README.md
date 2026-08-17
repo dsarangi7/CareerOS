@@ -13,6 +13,8 @@ python -m scripts.tasks validate
 python -m scripts.tasks export-profile
 python -m scripts.tasks export-profile-csv
 python -m scripts.tasks security-scan
+python -m scripts.tasks api-smoke
+python -m scripts.tasks dashboard-smoke
 ```
 
 Run the API:
@@ -66,3 +68,5 @@ python -m streamlit run dashboard/Home.py
 ## Current Scope
 
 Phases 1-7 are implemented as local-first vertical slices: profile/evidence management, job ingestion and scoring, application workflow, tailored CV generation, guarded agents, CRM reporting, workbook export, and security/privacy hardening checks.
+
+See `docs/FINAL_COMPLETION_REPORT.md` for the final acceptance summary, limitations, and first-use workflows.

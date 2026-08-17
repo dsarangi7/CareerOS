@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import argparse
+import py_compile
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -228,6 +230,9 @@ def validate() -> None:
     run([sys.executable, "-m", "mypy", "app", "scripts", "tests"])
     run([sys.executable, "-m", "pytest"])
     security_scan()
+    api_smoke()
+    dashboard_smoke()
+    docker_check()
     export_demo()
     export_profile()
     export_profile_csv()
@@ -246,6 +251,56 @@ def backup_db() -> Path:
     db_path = ROOT / "career_os.db"
     output_dir = ROOT / "data" / "backups"
     return create_sqlite_backup(db_path, output_dir)
+
+
+def api_smoke() -> None:
+    from fastapi.testclient import TestClient
+
+    from app.api.main import app
+
+    response = TestClient(app).get("/health")
+    if response.status_code != 200 or response.json().get("status") != "ok":
+        raise SystemExit("API smoke check failed")
+    print("API smoke check passed.")
+
+
+def dashboard_smoke() -> None:
+    required_pages = {
+        "01_Opportunities.py",
+        "02_Career_Profile.py",
+        "03_Review_Queue.py",
+        "04_Achievements_and_Evidence.py",
+        "05_CV_Library.py",
+        "06_Applications_Pipeline.py",
+        "07_Communications.py",
+        "08_Interviews.py",
+        "09_Follow-ups.py",
+        "10_Weekly_Reports.py",
+        "11_Analytics.py",
+        "12_Settings.py",
+        "13_Opportunity_Detail.py",
+    }
+    pages_dir = ROOT / "dashboard" / "pages"
+    actual_pages = {path.name for path in pages_dir.glob("*.py")}
+    missing = required_pages - actual_pages
+    if missing:
+        raise SystemExit(f"Dashboard pages missing: {sorted(missing)}")
+    py_compile.compile(str(ROOT / "dashboard" / "Home.py"), doraise=True)
+    for path in pages_dir.glob("*.py"):
+        py_compile.compile(str(path), doraise=True)
+    print("Dashboard smoke check passed.")
+
+
+def docker_check() -> None:
+    required_files = [ROOT / "Dockerfile", ROOT / "docker-compose.yml"]
+    missing = [str(path.name) for path in required_files if not path.exists()]
+    if missing:
+        raise SystemExit(f"Docker files missing: {missing}")
+    if shutil.which("docker") is None:
+        print("Docker executable not found; Docker startup check skipped on this machine.")
+        return
+    run(["docker", "compose", "config"])
+    print("Docker compose configuration check passed.")
 
 
 def import_jobs(path: Path) -> None:
@@ -271,6 +326,9 @@ def main() -> None:
             "import-jobs",
             "security-scan",
             "backup-db",
+            "api-smoke",
+            "dashboard-smoke",
+            "docker-check",
         ],
     )
     parser.add_argument("--path", type=Path)
@@ -301,6 +359,12 @@ def main() -> None:
     elif args.command == "backup-db":
         output = backup_db()
         print(output)
+    elif args.command == "api-smoke":
+        api_smoke()
+    elif args.command == "dashboard-smoke":
+        dashboard_smoke()
+    elif args.command == "docker-check":
+        docker_check()
 
 
 if __name__ == "__main__":
