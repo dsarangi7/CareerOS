@@ -32,7 +32,7 @@ CareerOS is a modular local-first Python application. FastAPI exposes typed work
 ## Setup Commands
 
 ```powershell
-cd C:\Users\admin\Downloads\career-os
+cd G:\AI_WORKSPACE\CareerOS
 python -m scripts.tasks setup
 python -m scripts.tasks migrate
 python -m scripts.tasks seed

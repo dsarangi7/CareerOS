@@ -8,5 +8,9 @@ __pycache__/
 career_os.db
 data/exports/*
 !data/exports/.gitkeep
+private_input/
+private_output/
+private_data/
+input/
 dist/
 build/
