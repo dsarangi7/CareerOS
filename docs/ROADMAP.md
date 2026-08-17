@@ -8,3 +8,5 @@
 - Add version comparison and explicit CV publish approval workflow.
 - Expand OpenAI-backed agent adapter with live structured-output execution once credentials are explicitly configured.
 - Add richer tracing dashboards for agent runs and validation results.
+- Add authentication/authorization and deployment-grade secret management before any hosted use.
+- Add encrypted-at-rest storage for highly sensitive local documents if the project moves beyond a single-user desktop workflow.

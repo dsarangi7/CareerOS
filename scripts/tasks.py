@@ -6,23 +6,16 @@ import sys
 from pathlib import Path
 from typing import TypedDict
 
-import pandas as pd
 from sqlalchemy import func, select
 
 from app.core.enums import JobStatus, SponsorshipStatus
 from app.db.base import SessionLocal, create_all
 from app.models.entities import (
-    Application,
-    AuditEvent,
     CandidateProfile,
-    Company,
-    FollowUp,
-    Interview,
-    JobFitAssessment,
     JobOpportunity,
-    SponsorshipAssessment,
 )
 from app.scoring.fit import calculate_fit_score
+from app.security.hardening import create_sqlite_backup, scan_repo_for_secrets
 from app.services.job_import import import_jobs_from_file
 from app.services.jobs import (
     assess_and_store_sponsorship,
@@ -32,6 +25,7 @@ from app.services.jobs import (
 )
 from app.services.profile import seed_candidate_profile
 from app.services.profile_io import export_profile_csv_bundle, export_profile_workbook
+from app.services.reporting import export_crm_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -203,76 +197,7 @@ def export_demo() -> Path:
     seed()
     output = ROOT / "data" / "exports" / "career_os_demo_export.xlsx"
     with SessionLocal() as session:
-        opportunities = session.execute(
-            select(JobOpportunity, Company).join(Company, isouter=True)
-        ).all()
-        scores = list(session.scalars(select(JobFitAssessment)))
-        sponsorships = list(session.scalars(select(SponsorshipAssessment)))
-        applications = list(session.scalars(select(Application)))
-        interviews = list(session.scalars(select(Interview)))
-        followups = list(session.scalars(select(FollowUp)))
-        audit = list(session.scalars(select(AuditEvent)))
-
-    with pd.ExcelWriter(output, engine="openpyxl") as writer:
-        pd.DataFrame(
-            [
-                {
-                    "Company": company.name if company else "",
-                    "Title": job.title,
-                    "Country": job.country,
-                    "Status": str(job.status),
-                    "Source URL": job.source_url,
-                }
-                for job, company in opportunities
-            ]
-        ).to_excel(writer, sheet_name="Opportunity register", index=False)
-        pd.DataFrame(
-            [
-                {
-                    "Job ID": score.job_id,
-                    "Total score": score.total_score,
-                    "Recommendation": score.recommendation,
-                    "Confidence": score.confidence,
-                }
-                for score in scores
-            ]
-        ).to_excel(writer, sheet_name="Skill-gap analysis", index=False)
-        pd.DataFrame(
-            [
-                {
-                    "Job ID": item.job_id,
-                    "Classification": str(item.classification),
-                    "Evidence": item.evidence_fragment,
-                    "Confidence": item.confidence,
-                }
-                for item in sponsorships
-            ]
-        ).to_excel(writer, sheet_name="Weekly summary", index=False)
-        pd.DataFrame([app.__dict__ for app in applications]).to_excel(
-            writer, sheet_name="Application pipeline", index=False
-        )
-        pd.DataFrame(columns=["Name", "Company", "Role", "Channel"]).to_excel(
-            writer, sheet_name="Contacts", index=False
-        )
-        pd.DataFrame([row.__dict__ for row in interviews]).to_excel(
-            writer, sheet_name="Interviews", index=False
-        )
-        pd.DataFrame([row.__dict__ for row in followups]).to_excel(
-            writer, sheet_name="Follow-ups", index=False
-        )
-        pd.DataFrame(columns=["Application ID", "Result", "Reason"]).to_excel(
-            writer, sheet_name="Outcomes", index=False
-        )
-        pd.DataFrame(
-            [
-                {"Field": "Status", "Definition": "CareerOS application/job workflow status"},
-                {"Field": "Recommendation", "Definition": "Explainable scoring decision band"},
-            ]
-        ).to_excel(writer, sheet_name="Data dictionary", index=False)
-        pd.DataFrame([{"Audit events": len(audit), "Exported jobs": len(opportunities)}]).to_excel(
-            writer, sheet_name="Summary metrics", index=False
-        )
-    return output
+        return export_crm_workbook(session, output)
 
 
 def export_profile() -> Path:
@@ -302,9 +227,25 @@ def validate() -> None:
     run([sys.executable, "-m", "ruff", "check", "."])
     run([sys.executable, "-m", "mypy", "app", "scripts", "tests"])
     run([sys.executable, "-m", "pytest"])
+    security_scan()
     export_demo()
     export_profile()
     export_profile_csv()
+
+
+def security_scan() -> None:
+    findings = scan_repo_for_secrets(ROOT)
+    if findings:
+        for path, match_types in findings.items():
+            print(f"{path}: {', '.join(match_types)}")
+        raise SystemExit("Potential secret material found")
+    print("Security scan passed: no obvious secret patterns found.")
+
+
+def backup_db() -> Path:
+    db_path = ROOT / "career_os.db"
+    output_dir = ROOT / "data" / "backups"
+    return create_sqlite_backup(db_path, output_dir)
 
 
 def import_jobs(path: Path) -> None:
@@ -328,6 +269,8 @@ def main() -> None:
             "export-profile",
             "export-profile-csv",
             "import-jobs",
+            "security-scan",
+            "backup-db",
         ],
     )
     parser.add_argument("--path", type=Path)
@@ -353,6 +296,11 @@ def main() -> None:
         if args.path is None:
             raise SystemExit("--path is required for import-jobs")
         import_jobs(args.path)
+    elif args.command == "security-scan":
+        security_scan()
+    elif args.command == "backup-db":
+        output = backup_db()
+        print(output)
 
 
 if __name__ == "__main__":

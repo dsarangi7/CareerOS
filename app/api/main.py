@@ -14,17 +14,23 @@ from app.models.entities import (
     Achievement,
     Application,
     CandidateProfile,
+    Communication,
     EducationRecord,
     EmploymentRecord,
     EvidenceRecord,
+    FollowUp,
     HumanApproval,
+    Interview,
+    InterviewPreparationPack,
     JobFitAssessment,
     JobOpportunity,
     JobRequirement,
+    Outcome,
     Project,
     Skill,
     SponsorshipAssessment,
     TailoredCV,
+    WeeklyReport,
 )
 from app.schemas.agents import AgentRunRequest, AgentRunResponse
 from app.schemas.cv import ClaimValidationReport, TailoredCVRead, TailoredCVRequest
@@ -56,6 +62,19 @@ from app.schemas.jobs import (
     SponsorshipAssessmentRead,
 )
 from app.schemas.profile import CandidateProfileRead
+from app.schemas.reporting import (
+    CommunicationCreate,
+    CommunicationRead,
+    FollowUpCreate,
+    FollowUpRead,
+    InterviewCreate,
+    InterviewPreparationPackRead,
+    InterviewRead,
+    OutcomeCreate,
+    OutcomeRead,
+    WeeklyReportRead,
+    WeeklyReportRequest,
+)
 from app.services.applications import (
     ApplicationWorkflowError,
     create_application_for_job,
@@ -88,6 +107,16 @@ from app.services.evidence import (
     update_verification_status,
 )
 from app.services.jobs import create_job, ingest_job_description
+from app.services.reporting import (
+    ReportingError,
+    generate_interview_prep_pack,
+    generate_weekly_report,
+    overdue_followups,
+    record_communication,
+    record_outcome,
+    schedule_follow_up,
+    schedule_interview,
+)
 
 app = FastAPI(title="CareerOS", version="0.1.0")
 SessionDep = Annotated[Session, Depends(get_session)]
@@ -250,6 +279,109 @@ def post_application_applied(
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     session.commit()
     return application
+
+
+@app.post(
+    "/applications/{application_id}/communications",
+    response_model=CommunicationRead,
+    status_code=201,
+)
+def post_communication(
+    application_id: str, payload: CommunicationCreate, session: SessionDep
+) -> Communication:
+    try:
+        communication = record_communication(
+            session,
+            application_id=application_id,
+            contact_id=payload.contact_id,
+            channel=payload.channel,
+            direction=payload.direction,
+            body=payload.body,
+        )
+    except ReportingError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return communication
+
+
+@app.post(
+    "/applications/{application_id}/follow-ups",
+    response_model=FollowUpRead,
+    status_code=201,
+)
+def post_follow_up(application_id: str, payload: FollowUpCreate, session: SessionDep) -> FollowUp:
+    try:
+        follow_up = schedule_follow_up(
+            session, application_id=application_id, due_at=payload.due_at, notes=payload.notes
+        )
+    except ReportingError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return follow_up
+
+
+@app.get("/follow-ups/overdue", response_model=list[FollowUpRead])
+def get_overdue_followups(session: SessionDep) -> list[FollowUp]:
+    return overdue_followups(session)
+
+
+@app.post(
+    "/applications/{application_id}/interviews",
+    response_model=InterviewRead,
+    status_code=201,
+)
+def post_interview(application_id: str, payload: InterviewCreate, session: SessionDep) -> Interview:
+    try:
+        interview = schedule_interview(
+            session,
+            application_id=application_id,
+            stage=payload.stage,
+            scheduled_at=payload.scheduled_at,
+            notes=payload.notes,
+        )
+    except ReportingError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return interview
+
+
+@app.post(
+    "/interviews/{interview_id}/preparation-pack",
+    response_model=InterviewPreparationPackRead,
+    status_code=201,
+)
+def post_interview_preparation_pack(
+    interview_id: str, session: SessionDep
+) -> InterviewPreparationPack:
+    try:
+        pack = generate_interview_prep_pack(session, interview_id=interview_id)
+    except ReportingError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return pack
+
+
+@app.post("/applications/{application_id}/outcomes", response_model=OutcomeRead, status_code=201)
+def post_outcome(application_id: str, payload: OutcomeCreate, session: SessionDep) -> Outcome:
+    try:
+        outcome = record_outcome(
+            session,
+            application_id=application_id,
+            result=payload.result,
+            reason=payload.reason,
+            notes=payload.notes,
+        )
+    except ReportingError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    session.commit()
+    return outcome
+
+
+@app.post("/reports/weekly", response_model=WeeklyReportRead, status_code=201)
+def post_weekly_report(payload: WeeklyReportRequest, session: SessionDep) -> WeeklyReport:
+    report = generate_weekly_report(session, week_start=payload.week_start)
+    session.commit()
+    return report
 
 
 @app.post("/opportunities/{job_id}/tailored-cv", response_model=TailoredCVRead, status_code=201)

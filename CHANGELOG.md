@@ -14,3 +14,5 @@
 - Completed a practical Phase 3 CRM workflow bridge with application creation, ready-to-apply, and approval-gated applied status.
 - Completed first Phase 4 tailored CV generation slice with claim validation, PDF rendering, validation results, and human approval request records.
 - Completed first Phase 5 agent integration slice with typed contracts, mock adapter, optional OpenAI adapter, guardrails, tracing records, and agent API endpoints.
+- Completed Phase 6 CRM/reporting workflows for communications, follow-ups, overdue follow-ups, interviews, interview prep packs, outcomes, weekly reports, and styled XLSX export.
+- Completed Phase 7 security/privacy hardening helpers for secret scanning, secret redaction, upload validation, local SQLite backups, validation integration, and documentation.

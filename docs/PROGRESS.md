@@ -143,3 +143,30 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 48 source files checked.
   - `pytest`: 22 passed, 1 upstream FastAPI/TestClient deprecation warning.
+
+### Phase 6
+
+- Completed CRM/reporting workflows:
+  - Added local communication logging for applications.
+  - Added follow-up scheduling and overdue follow-up calculation.
+  - Added interview scheduling and deterministic interview preparation packs.
+  - Added outcome recording.
+  - Added weekly report generation with reconciled application, communication, interview, outcome, follow-up, sponsorship, opportunity, and skill-gap facts.
+  - Added styled CRM XLSX export with opportunity register, application pipeline, contacts, interviews, follow-ups, outcomes, skill-gap analysis, weekly summary, and data dictionary sheets.
+  - Added API endpoints for reporting workflows and weekly reports.
+
+### Phase 7
+
+- Completed local hardening slice:
+  - Added repository secret scanning and secret redaction helpers.
+  - Added upload allowlist and size validation helper.
+  - Added local SQLite backup helper and `python -m scripts.tasks backup-db`.
+  - Added `python -m scripts.tasks security-scan` and integrated it into validation.
+  - Added security, privacy, validation, and backup/restore documentation.
+- Validation result after Phases 6 and 7: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 54 source files checked.
+  - `pytest`: 26 passed, 1 upstream FastAPI/TestClient deprecation warning.
+  - `security-scan`: passed with no obvious secret patterns found.
+  - Demo CRM XLSX export, profile workbook export, and profile CSV bundle export generated successfully.

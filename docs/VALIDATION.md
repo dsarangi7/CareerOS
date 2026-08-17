@@ -6,7 +6,7 @@ Run:
 python -m scripts.tasks validate
 ```
 
-This checks formatting, linting, typing, tests, and demo XLSX export generation.
+This checks formatting, linting, typing, tests, secret scanning, and demo XLSX export generation.
 
 Additional Phase 2 export:
 
@@ -52,4 +52,19 @@ Phase 5 agent contracts and guardrails are covered by:
 ```powershell
 python -m pytest tests/unit/test_phase5_agents.py
 python -m pytest tests/integration/test_phase5_agent_api.py
+```
+
+Phase 6 CRM/reporting workflows are covered by:
+
+```powershell
+python -m pytest tests/integration/test_phase6_reporting.py
+```
+
+This synthetic workflow creates an application, records communication, schedules an overdue follow-up, creates an interview prep pack, records an outcome, generates a weekly report, and verifies the XLSX workbook sheets open.
+
+Phase 7 hardening helpers are covered by:
+
+```powershell
+python -m pytest tests/unit/test_phase7_security.py
+python -m scripts.tasks security-scan
 ```
