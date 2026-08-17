@@ -8,3 +8,4 @@
 - Verified API and dashboard startup locally.
 - Added first Phase 2 profile/evidence CRUD API slice for skills, achievements, and evidence records.
 - Expanded Phase 2 with employment, education, project CRUD endpoints, review queue summaries, verification updates, soft deletion, profile workbook export/import service, and dashboard edit controls.
+- Added safe field updates for profile/evidence records and CSV bundle export/import helpers.

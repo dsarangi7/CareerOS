@@ -72,6 +72,19 @@ def test_profile_skill_achievement_evidence_crud_api() -> None:
         assert verification_response.status_code == 200
         assert verification_response.json()["verification_status"] == "verified"
 
+        field_update_response = client.patch(
+            f"/records/achievements/{achievement_id}",
+            json={"updates": {"description": "Updated through API"}},
+        )
+        assert field_update_response.status_code == 200
+        assert field_update_response.json()["updated_fields"] == ["description"]
+
+        blocked_update_response = client.patch(
+            f"/records/achievements/{achievement_id}",
+            json={"updates": {"profile_id": "not-allowed"}},
+        )
+        assert blocked_update_response.status_code == 400
+
         queue_response = client.get(f"/profiles/{profile_id}/review-queue")
         assert queue_response.status_code == 200
         assert "skills" in queue_response.json()

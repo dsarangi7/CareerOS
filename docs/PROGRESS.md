@@ -58,3 +58,14 @@
   - `mypy app scripts tests`: passed with 32 source files checked.
   - `pytest`: 10 passed, 1 upstream FastAPI/TestClient deprecation warning.
   - Demo CRM XLSX export and profile workbook export generated successfully.
+- Continued Phase 2 profile/evidence data management:
+  - Added safe field update endpoint: `PATCH /records/{record_type}/{record_id}`.
+  - Added editable-field allowlists per profile/evidence record type.
+  - Added profile/evidence CSV bundle export/import service.
+  - Added `python -m scripts.tasks export-profile-csv`.
+  - Expanded tests for field updates and CSV bundle generation.
+- Validation result after CSV/update slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 32 source files checked.
+  - `pytest`: 10 passed, 1 upstream FastAPI/TestClient deprecation warning.

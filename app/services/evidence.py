@@ -37,6 +37,10 @@ class RecordNotFoundError(LookupError):
     pass
 
 
+class InvalidRecordUpdateError(ValueError):
+    pass
+
+
 RecordModel = (
     type[EmploymentRecord]
     | type[EducationRecord]
@@ -46,6 +50,15 @@ RecordModel = (
     | type[EvidenceRecord]
 )
 RecordEntity = EmploymentRecord | EducationRecord | Skill | Project | Achievement | EvidenceRecord
+
+EDITABLE_FIELDS: dict[str, set[str]] = {
+    "EmploymentRecord": {"employer", "title", "location", "start_date", "end_date", "notes"},
+    "EducationRecord": {"institution", "degree", "field", "start_date", "end_date"},
+    "Skill": {"name", "category"},
+    "Project": {"name", "summary"},
+    "Achievement": {"title", "description", "evidence_strength"},
+    "EvidenceRecord": {"achievement_id", "title", "source_type", "source_ref"},
+}
 
 
 def get_profile_or_raise(session: Session, profile_id: str) -> CandidateProfile:
@@ -221,6 +234,37 @@ def update_verification_status(
         subject_type=model.__name__,
         subject_id=record.id,
         details={"verification_status": status.value},
+    )
+    return record
+
+
+def update_record_fields(
+    session: Session,
+    model: RecordModel,
+    record_id: str,
+    updates: dict[str, str | None],
+) -> RecordEntity:
+    record = cast(RecordEntity | None, session.get(model, record_id))
+    if record is None or record.deleted_at is not None:
+        raise RecordNotFoundError(record_id)
+    allowed_fields = EDITABLE_FIELDS[model.__name__]
+    unknown_fields = set(updates) - allowed_fields
+    if unknown_fields:
+        raise InvalidRecordUpdateError(
+            f"Fields are not editable for {model.__name__}: {', '.join(sorted(unknown_fields))}"
+        )
+    if isinstance(record, EvidenceRecord) and "achievement_id" in updates:
+        achievement_id = updates["achievement_id"]
+        if achievement_id is not None and session.get(Achievement, achievement_id) is None:
+            raise AchievementNotFoundError(achievement_id)
+    for field, value in updates.items():
+        setattr(record, field, value)
+    record_audit(
+        session,
+        action="update_record_fields",
+        subject_type=model.__name__,
+        subject_id=record.id,
+        details={"updated_fields": sorted(updates)},
     )
     return record
 

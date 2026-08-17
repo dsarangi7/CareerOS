@@ -11,6 +11,7 @@ python -m scripts.tasks migrate
 python -m scripts.tasks seed
 python -m scripts.tasks validate
 python -m scripts.tasks export-profile
+python -m scripts.tasks export-profile-csv
 ```
 
 Run the API:

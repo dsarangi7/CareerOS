@@ -30,7 +30,7 @@ from app.services.jobs import (
     transition_job,
 )
 from app.services.profile import seed_candidate_profile
-from app.services.profile_io import export_profile_workbook
+from app.services.profile_io import export_profile_csv_bundle, export_profile_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -285,6 +285,17 @@ def export_profile() -> Path:
         return export_profile_workbook(session, profile.id, output)
 
 
+def export_profile_csv() -> Path:
+    create_all()
+    seed()
+    output = ROOT / "data" / "exports" / "career_os_profile_csv"
+    with SessionLocal() as session:
+        profile = session.scalar(select(CandidateProfile).order_by(CandidateProfile.created_at))
+        if profile is None:
+            raise RuntimeError("Seed profile not found")
+        return export_profile_csv_bundle(session, profile.id, output)
+
+
 def validate() -> None:
     run([sys.executable, "-m", "ruff", "format", "--check", "."])
     run([sys.executable, "-m", "ruff", "check", "."])
@@ -292,13 +303,22 @@ def validate() -> None:
     run([sys.executable, "-m", "pytest"])
     export_demo()
     export_profile()
+    export_profile_csv()
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command",
-        choices=["setup", "migrate", "seed", "validate", "export-demo", "export-profile"],
+        choices=[
+            "setup",
+            "migrate",
+            "seed",
+            "validate",
+            "export-demo",
+            "export-profile",
+            "export-profile-csv",
+        ],
     )
     args = parser.parse_args()
     if args.command == "setup":
@@ -314,6 +334,9 @@ def main() -> None:
         print(output)
     elif args.command == "export-profile":
         output = export_profile()
+        print(output)
+    elif args.command == "export-profile-csv":
+        output = export_profile_csv()
         print(output)
 
 

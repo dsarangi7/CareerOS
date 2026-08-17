@@ -16,10 +16,11 @@ from app.services.evidence import (
     get_review_queue,
     list_skills,
     soft_delete_record,
+    update_record_fields,
     update_verification_status,
 )
 from app.services.profile import seed_candidate_profile
-from app.services.profile_io import export_profile_workbook
+from app.services.profile_io import export_profile_csv_bundle, export_profile_workbook
 
 
 def test_phase2_profile_records_review_queue_and_export(session, tmp_path: Path) -> None:  # type: ignore[no-untyped-def]
@@ -39,15 +40,18 @@ def test_phase2_profile_records_review_queue_and_export(session, tmp_path: Path)
     session.flush()
 
     update_verification_status(session, skill.__class__, skill.id, VerificationStatus.VERIFIED)
+    update_record_fields(session, project.__class__, project.id, {"summary": "Updated summary"})
     soft_delete_record(session, Skill, skill.id)
     queue = get_review_queue(session, profile.id)
     export_path = export_profile_workbook(session, profile.id, tmp_path / "profile.xlsx")
+    csv_dir = export_profile_csv_bundle(session, profile.id, tmp_path / "csv")
 
     assert employment.id
     assert education.id
-    assert project.id
+    assert project.summary == "Updated summary"
     assert skill not in list_skills(session, profile.id)
     assert queue["employment"]
     assert queue["education"]
     assert queue["projects"]
     assert export_path.exists()
+    assert (csv_dir / "projects.csv").exists()

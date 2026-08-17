@@ -28,6 +28,7 @@ from app.schemas.evidence import (
     EvidenceRecordRead,
     ProjectCreate,
     ProjectRead,
+    RecordFieldUpdate,
     SkillCreate,
     SkillRead,
     VerificationUpdate,
@@ -36,6 +37,7 @@ from app.schemas.jobs import JobOpportunityCreate, JobOpportunityRead
 from app.schemas.profile import CandidateProfileRead
 from app.services.evidence import (
     AchievementNotFoundError,
+    InvalidRecordUpdateError,
     ProfileNotFoundError,
     RecordModel,
     RecordNotFoundError,
@@ -54,6 +56,7 @@ from app.services.evidence import (
     list_projects,
     list_skills,
     soft_delete_record,
+    update_record_fields,
     update_verification_status,
 )
 from app.services.jobs import create_job
@@ -243,6 +246,25 @@ def patch_verification(
         raise HTTPException(status_code=404, detail="Record not found") from exc
     session.commit()
     return {"id": record.id, "verification_status": payload.verification_status.value}
+
+
+@app.patch("/records/{record_type}/{record_id}")
+def patch_record_fields(
+    record_type: str, record_id: str, payload: RecordFieldUpdate, session: SessionDep
+) -> dict[str, object]:
+    model = RECORD_MODELS.get(record_type)
+    if model is None:
+        raise HTTPException(status_code=404, detail="Record type not found")
+    try:
+        record = update_record_fields(session, model, record_id, payload.updates)
+    except RecordNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Record not found") from exc
+    except AchievementNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="Achievement not found") from exc
+    except InvalidRecordUpdateError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    session.commit()
+    return {"id": record.id, "updated_fields": sorted(payload.updates)}
 
 
 @app.delete("/records/{record_type}/{record_id}", status_code=204)

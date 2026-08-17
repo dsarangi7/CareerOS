@@ -13,6 +13,10 @@ class VerificationUpdate(BaseModel):
     verification_status: VerificationStatus
 
 
+class RecordFieldUpdate(BaseModel):
+    updates: dict[str, str | None] = Field(default_factory=dict)
+
+
 class EmploymentRecordCreate(BaseModel):
     employer: str = Field(min_length=1, max_length=200)
     title: str = Field(min_length=1, max_length=200)

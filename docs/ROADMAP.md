@@ -1,7 +1,6 @@
 # Roadmap
 
-- Add update-by-field endpoints for profile/evidence records beyond verification status.
-- Add CSV import/export commands for profile/evidence tables.
+- Add API endpoints or CLI command for importing profile/evidence CSV bundles after human review.
 - Add import parsers for text, PDF, CSV, XLSX, and JSON job descriptions.
 - Add duplicate detection and CRM analytics.
 - Add CV generation, claim validation, and PDF rendering.
