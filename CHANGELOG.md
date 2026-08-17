@@ -1,0 +1,9 @@
+# Changelog
+
+## 0.1.0 - 2026-08-17
+
+- Created CareerOS monorepo structure.
+- Added Phase 1 foundation: configuration, database, core entities, seed system, health API, dashboard shell, tests, and validation scripts.
+- Added deterministic sponsorship classification, scoring, approval-gated status transitions, and demo XLSX export.
+- Verified API and dashboard startup locally.
+- Added first Phase 2 profile/evidence CRUD API slice for skills, achievements, and evidence records.
