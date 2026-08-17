@@ -28,4 +28,13 @@ Phase 3 job ingestion is covered by integration tests in:
 
 ```powershell
 python -m pytest tests/integration/test_job_ingestion_phase3.py
+python -m pytest tests/integration/test_job_file_import_phase3.py
 ```
+
+Import jobs from a file:
+
+```powershell
+python -m scripts.tasks import-jobs --path data/fixtures/jobs.csv
+```
+
+Supported file types for this command are CSV, XLSX, and JSON.

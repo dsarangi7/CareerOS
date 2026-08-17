@@ -22,6 +22,12 @@ python -m uvicorn app.api.main:app --reload
 
 Ingest a pasted job description through `POST /opportunities/ingest`.
 
+Import jobs from a local CSV, XLSX, or JSON file:
+
+```powershell
+python -m scripts.tasks import-jobs --path path\to\jobs.csv
+```
+
 Run the dashboard:
 
 ```powershell

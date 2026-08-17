@@ -23,6 +23,7 @@ from app.models.entities import (
     SponsorshipAssessment,
 )
 from app.scoring.fit import calculate_fit_score
+from app.services.job_import import import_jobs_from_file
 from app.services.jobs import (
     assess_and_store_sponsorship,
     create_job,
@@ -306,6 +307,14 @@ def validate() -> None:
     export_profile_csv()
 
 
+def import_jobs(path: Path) -> None:
+    create_all()
+    with SessionLocal() as session:
+        summary = import_jobs_from_file(session, path)
+        session.commit()
+    print(summary)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -318,8 +327,10 @@ def main() -> None:
             "export-demo",
             "export-profile",
             "export-profile-csv",
+            "import-jobs",
         ],
     )
+    parser.add_argument("--path", type=Path)
     args = parser.parse_args()
     if args.command == "setup":
         setup()
@@ -338,6 +349,10 @@ def main() -> None:
     elif args.command == "export-profile-csv":
         output = export_profile_csv()
         print(output)
+    elif args.command == "import-jobs":
+        if args.path is None:
+            raise SystemExit("--path is required for import-jobs")
+        import_jobs(args.path)
 
 
 if __name__ == "__main__":

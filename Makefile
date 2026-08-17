@@ -1,4 +1,4 @@
-.PHONY: setup format lint typecheck test test-unit test-integration test-e2e migrate seed run-api run-dashboard validate export-demo docker-up
+.PHONY: setup format lint typecheck test test-unit test-integration test-e2e migrate seed run-api run-dashboard validate export-demo export-profile export-profile-csv import-jobs docker-up
 
 setup:
 	python -m scripts.tasks setup
@@ -41,6 +41,15 @@ validate:
 
 export-demo:
 	python -m scripts.tasks export-demo
+
+export-profile:
+	python -m scripts.tasks export-profile
+
+export-profile-csv:
+	python -m scripts.tasks export-profile-csv
+
+import-jobs:
+	python -m scripts.tasks import-jobs --path $(path)
 
 docker-up:
 	docker compose up --build

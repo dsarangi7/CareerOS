@@ -86,3 +86,13 @@
   - `ruff check`: passed.
   - `mypy app scripts tests`: passed with 33 source files checked.
   - `pytest`: 12 passed, 1 upstream FastAPI/TestClient deprecation warning.
+- Continued Phase 3 with file-based job imports:
+  - Added CSV, XLSX, and JSON job import service.
+  - Added `python -m scripts.tasks import-jobs --path <file>`.
+  - Added `make import-jobs path=<file>`.
+  - Reused deterministic ingestion, requirement extraction, sponsorship classification, scoring, and duplicate detection for each imported row.
+- Validation result after file-import slice: passed on 2026-08-17.
+  - `ruff format --check`: passed.
+  - `ruff check`: passed.
+  - `mypy app scripts tests`: passed with 35 source files checked.
+  - `pytest`: 13 passed, 1 upstream FastAPI/TestClient deprecation warning.
