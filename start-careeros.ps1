@@ -28,7 +28,8 @@ function Test-HttpReady($Url) {
 }
 
 function Wait-ForService($Name, $Url, $Process) {
-    $deadline = (Get-Date).AddSeconds(60)
+    $timeoutSeconds = 120
+    $deadline = (Get-Date).AddSeconds($timeoutSeconds)
     while ((Get-Date) -lt $deadline) {
         if ($Process.HasExited) {
             Fail "$Name exited before becoming healthy. Check logs in $RuntimeDir."
@@ -40,7 +41,7 @@ function Wait-ForService($Name, $Url, $Process) {
         Start-Sleep -Seconds 1
         $Process.Refresh()
     }
-    Fail "$Name did not become healthy at $Url within 60 seconds. Check logs in $RuntimeDir."
+    Fail "$Name did not become healthy at $Url within $timeoutSeconds seconds. Check logs in $LogDir."
 }
 
 function Stop-StartedProcesses($Processes) {
