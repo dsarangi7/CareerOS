@@ -12,10 +12,7 @@ from sqlalchemy import func, select
 
 from app.core.enums import JobStatus, SponsorshipStatus
 from app.db.base import SessionLocal, create_all
-from app.models.entities import (
-    CandidateProfile,
-    JobOpportunity,
-)
+from app.models.entities import CandidateProfile, JobOpportunity, WatchCompany
 from app.scoring.fit import calculate_fit_score
 from app.security.hardening import create_sqlite_backup, scan_repo_for_secrets
 from app.services.job_import import import_jobs_from_file
@@ -28,6 +25,7 @@ from app.services.jobs import (
 from app.services.profile import seed_candidate_profile
 from app.services.profile_io import export_profile_csv_bundle, export_profile_workbook
 from app.services.reporting import export_crm_workbook
+from app.watchlist.services import run_watch_scan, seed_watchlist_companies
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -157,6 +155,7 @@ def migrate() -> None:
 def seed() -> None:
     create_all()
     with SessionLocal() as session:
+        seed_watchlist_companies(session)
         seed_candidate_profile(session)
         existing_jobs = session.scalar(select(func.count()).select_from(JobOpportunity))
         if existing_jobs == 0:
@@ -224,6 +223,47 @@ def export_profile_csv() -> Path:
         return export_profile_csv_bundle(session, profile.id, output)
 
 
+def seed_watchlist() -> None:
+    create_all()
+    with SessionLocal() as session:
+        count = seed_watchlist_companies(session)
+        session.commit()
+    print({"watchlist_companies": count})
+
+
+def scan_watchlist_tier(tier: str, *, live: bool = False, limit: int | None = None) -> None:
+    create_all()
+    with SessionLocal() as session:
+        if session.scalar(select(func.count()).select_from(WatchCompany)) == 0:
+            seed_watchlist_companies(session)
+        summary = run_watch_scan(session, tier=tier, company_limit=limit, live=live)
+        session.commit()
+    print(summary)
+
+
+def scan_watchlist_live_tier_a_sample() -> None:
+    scan_watchlist_tier("A", live=True, limit=5)
+
+
+def weekly_watchlist_report() -> None:
+    create_all()
+    with SessionLocal() as session:
+        rows = session.scalars(
+            select(WatchCompany).order_by(WatchCompany.priority_tier, WatchCompany.canonical_name)
+        ).all()
+        report = {
+            "company_count": len(rows),
+            "active_jobs": sum(company.active_job_count for company in rows),
+            "relevant_jobs": sum(company.relevant_job_count for company in rows),
+            "manual_review": [
+                company.canonical_name
+                for company in rows
+                if company.manual_review_status == "required"
+            ],
+        }
+    print(report)
+
+
 def validate() -> None:
     run([sys.executable, "-m", "ruff", "format", "--check", "."])
     run([sys.executable, "-m", "ruff", "check", "."])
@@ -279,6 +319,7 @@ def dashboard_smoke() -> None:
         "11_Analytics.py",
         "12_Settings.py",
         "13_Opportunity_Detail.py",
+        "14_Company_Watchlist.py",
     }
     pages_dir = ROOT / "dashboard" / "pages"
     actual_pages = {path.name for path in pages_dir.glob("*.py")}
@@ -326,6 +367,12 @@ def main() -> None:
             "import-jobs",
             "security-scan",
             "backup-db",
+            "seed-watchlist",
+            "scan-tier-a",
+            "scan-tier-b",
+            "scan-tier-c",
+            "scan-tier-a-live-sample",
+            "watchlist-weekly-report",
             "api-smoke",
             "dashboard-smoke",
             "docker-check",
@@ -359,6 +406,18 @@ def main() -> None:
     elif args.command == "backup-db":
         output = backup_db()
         print(output)
+    elif args.command == "seed-watchlist":
+        seed_watchlist()
+    elif args.command == "scan-tier-a":
+        scan_watchlist_tier("A")
+    elif args.command == "scan-tier-b":
+        scan_watchlist_tier("B")
+    elif args.command == "scan-tier-c":
+        scan_watchlist_tier("C")
+    elif args.command == "scan-tier-a-live-sample":
+        scan_watchlist_live_tier_a_sample()
+    elif args.command == "watchlist-weekly-report":
+        weekly_watchlist_report()
     elif args.command == "api-smoke":
         api_smoke()
     elif args.command == "dashboard-smoke":

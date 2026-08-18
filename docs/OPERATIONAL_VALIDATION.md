@@ -129,3 +129,82 @@ For each job, record requirement extraction, sponsorship classification, fit sco
 ## Current Blocker
 
 Awaiting explicit confirmation of the local CV/source file to import and human confirmation of uncertain career facts. No real-data import has been performed yet.
+
+## Battery Company Watchlist and Scheduled Job Discovery - 2026-08-18
+
+### Commands Run
+
+```powershell
+python -m scripts.tasks migrate
+python -m scripts.tasks seed-watchlist
+python -m scripts.tasks scan-tier-a
+python -m scripts.tasks validate
+python -m scripts.tasks scan-tier-a-live-sample
+python -m scripts.tasks validate
+```
+
+### Implementation Results
+
+- Added 77 public company watchlist records across Tier A, Tier B, and Tier C.
+- Added persistent watchlist tables for companies, jobs, job assessments, job sources, and scan runs.
+- Added offline-safe scan commands for Tier A/B/C and weekly report generation.
+- Added bounded opt-in live scan command for the first five Tier-A companies.
+- Added optional Apify environment placeholders without actor IDs or tokens.
+- Added Company Watchlist Streamlit page with filters, company detail view, scan status, relevant jobs, sponsorship observations, and manual-review flags.
+- Added Windows Task Scheduler scripts that affect only `CareerOS-JobWatch-*` tasks.
+
+### Validation Results
+
+Final validation passed:
+
+- Ruff format check: passed.
+- Ruff lint: passed.
+- Mypy strict check: passed.
+- Pytest: 42 passed, 1 skipped.
+- Skipped test: live careers-page integration test, intentionally opt-in only.
+- Security scan: passed, no obvious secret patterns found.
+- API smoke check: passed.
+- Dashboard smoke check: passed.
+- Docker check: skipped because Docker executable was not available on this machine.
+
+### Controlled Live Scan
+
+Command:
+
+```powershell
+python -m scripts.tasks scan-tier-a-live-sample
+```
+
+Result:
+
+- Companies attempted: first five Tier-A companies in canonical-name order.
+- Successful page checks: 3.
+- New jobs captured: 2.
+- Changed jobs: 0.
+- Expired jobs: 0.
+- Manual-review failures: 2.
+
+Failures routed to manual review:
+
+- A123 Systems: official careers page returned HTTP 403.
+- BYD: official careers page timed out during the controlled sample.
+
+### Defects Found and Fixed
+
+- Live HTML fallback initially reused generic careers-page URLs as application URLs, causing false duplicate merging and noisy changed-job counts.
+- Fixed by separating `original_url` from `application_url` and deduping generic careers-page discoveries by company/title/location.
+- Added regression coverage to prevent generic careers pages from becoming canonical application URLs.
+- Added an intra-scan duplicate guard so repeated title fragments on the same page do not churn scan history.
+
+### Decisions
+
+- Official company sources remain preferred over LinkedIn or aggregators.
+- Inaccessible pages, CAPTCHAs, login-only pages, and uncertain ATS results are manual-review items.
+- Apify is optional only and must not run when official sources provide equivalent job data.
+- Windows scheduled tasks were not installed; installation requires explicit human approval.
+
+### Unresolved Questions
+
+- Confirm whether to install Windows Task Scheduler tasks for `CareerOS-JobWatch-*`.
+- Confirm whether live verification should continue company-by-company for the remaining watchlist records.
+- Confirm which countries and sponsorship patterns should receive highest priority once the approved master profile is finalized.

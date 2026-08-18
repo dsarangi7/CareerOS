@@ -4,7 +4,17 @@ import uuid
 from datetime import UTC, datetime
 from typing import Any
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Index, String, Text, UniqueConstraint
+from sqlalchemy import (
+    Boolean,
+    DateTime,
+    Float,
+    ForeignKey,
+    Index,
+    Integer,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.dialects.sqlite import JSON
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -177,6 +187,129 @@ class Company(TimestampMixin, Base):
     name: Mapped[str] = mapped_column(String(200), unique=True, nullable=False, index=True)
     website: Mapped[str | None] = mapped_column(String(500))
     notes: Mapped[str] = mapped_column(Text, default="")
+
+
+class WatchCompany(TimestampMixin, Base):
+    __tablename__ = "watch_companies"
+
+    canonical_name: Mapped[str] = mapped_column(
+        String(200), unique=True, nullable=False, index=True
+    )
+    alternative_names: Mapped[list[str]] = mapped_column(JSON, default=list)
+    parent_company: Mapped[str | None] = mapped_column(String(200))
+    company_website: Mapped[str | None] = mapped_column(String(500))
+    official_careers_url: Mapped[str | None] = mapped_column(String(1000))
+    careers_platform: Mapped[str] = mapped_column(String(120), default="Unknown")
+    ats_type: Mapped[str] = mapped_column(String(120), default="Unknown")
+    countries_of_operation: Mapped[list[str]] = mapped_column(JSON, default=list)
+    major_rnd_locations: Mapped[list[str]] = mapped_column(JSON, default=list)
+    battery_segment: Mapped[list[str]] = mapped_column(JSON, default=list)
+    company_classification: Mapped[list[str]] = mapped_column(JSON, default=list)
+    preferred_monitoring_frequency: Mapped[str] = mapped_column(String(80), default="weekly")
+    priority_tier: Mapped[str] = mapped_column(String(10), index=True)
+    geographic_relevance: Mapped[str] = mapped_column(String(120), default="global")
+    known_language_requirements: Mapped[str] = mapped_column(Text, default="")
+    sponsorship_evidence: Mapped[str] = mapped_column(Text, default="")
+    last_careers_page_verification: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    last_successful_scan: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    scan_status: Mapped[str] = mapped_column(String(80), default="pending", index=True)
+    active_job_count: Mapped[int] = mapped_column(Integer, default=0)
+    relevant_job_count: Mapped[int] = mapped_column(Integer, default=0)
+    notes: Mapped[str] = mapped_column(Text, default="")
+    manual_review_status: Mapped[str] = mapped_column(String(80), default="not_reviewed")
+
+    watch_jobs: Mapped[list[WatchJob]] = relationship(back_populates="company")
+
+
+class WatchJob(TimestampMixin, Base):
+    __tablename__ = "watch_jobs"
+    __table_args__ = (
+        UniqueConstraint("dedupe_key", name="uq_watch_job_dedupe_key"),
+        Index("ix_watch_job_company_title_location", "company_id", "title", "location"),
+    )
+
+    company_id: Mapped[str] = mapped_column(ForeignKey("watch_companies.id"), index=True)
+    title: Mapped[str] = mapped_column(String(250), nullable=False, index=True)
+    original_url: Mapped[str] = mapped_column(String(1000), default="")
+    application_url: Mapped[str] = mapped_column(String(1000), default="")
+    source: Mapped[str] = mapped_column(String(120), default="official_careers_html")
+    external_job_id: Mapped[str | None] = mapped_column(String(250), index=True)
+    location: Mapped[str | None] = mapped_column(String(250))
+    country: Mapped[str | None] = mapped_column(String(120), index=True)
+    work_mode: Mapped[str | None] = mapped_column(String(80))
+    publication_date: Mapped[str | None] = mapped_column(String(80))
+    retrieval_date: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    full_description: Mapped[str] = mapped_column(Text, default="")
+    department: Mapped[str | None] = mapped_column(String(200))
+    seniority: Mapped[str | None] = mapped_column(String(100))
+    salary: Mapped[str | None] = mapped_column(String(250))
+    required_skills: Mapped[list[str]] = mapped_column(JSON, default=list)
+    preferred_skills: Mapped[list[str]] = mapped_column(JSON, default=list)
+    experience_requirement: Mapped[str | None] = mapped_column(Text)
+    education_requirement: Mapped[str | None] = mapped_column(Text)
+    language_requirement: Mapped[str | None] = mapped_column(Text)
+    visa_wording: Mapped[str | None] = mapped_column(Text)
+    citizenship_restriction: Mapped[str | None] = mapped_column(Text)
+    security_clearance_restriction: Mapped[str | None] = mapped_column(Text)
+    closing_date: Mapped[str | None] = mapped_column(String(80))
+    content_hash: Mapped[str] = mapped_column(String(64), index=True, default="")
+    active_status: Mapped[str] = mapped_column(String(40), default="active", index=True)
+    scan_history: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list)
+    dedupe_key: Mapped[str] = mapped_column(String(300), nullable=False, index=True)
+
+    company: Mapped[WatchCompany] = relationship(back_populates="watch_jobs")
+    assessment: Mapped[WatchJobAssessment | None] = relationship(back_populates="job")
+
+
+class WatchJobAssessment(TimestampMixin, Base):
+    __tablename__ = "watch_job_assessments"
+
+    watch_job_id: Mapped[str] = mapped_column(ForeignKey("watch_jobs.id"), unique=True, index=True)
+    fit_score: Mapped[float] = mapped_column(Float, default=0.0, index=True)
+    eligibility_score: Mapped[float] = mapped_column(Float, default=0.0)
+    sponsorship_status: Mapped[str] = mapped_column(String(80), default="not_mentioned")
+    technical_match: Mapped[list[str]] = mapped_column(JSON, default=list)
+    transferable_match: Mapped[list[str]] = mapped_column(JSON, default=list)
+    missing_requirements: Mapped[list[str]] = mapped_column(JSON, default=list)
+    hard_restrictions: Mapped[list[str]] = mapped_column(JSON, default=list)
+    recommended_cv_lane: Mapped[str] = mapped_column(String(120), default="general_engineering")
+    recommended_action: Mapped[str] = mapped_column(
+        String(120), default="archive_without_notification"
+    )
+    confidence: Mapped[float] = mapped_column(Float, default=0.0)
+    evidence_mapping: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
+    application_urgency: Mapped[str] = mapped_column(String(80), default="low")
+
+    job: Mapped[WatchJob] = relationship(back_populates="assessment")
+
+
+class WatchJobSource(TimestampMixin, Base):
+    __tablename__ = "watch_job_sources"
+
+    company_id: Mapped[str] = mapped_column(ForeignKey("watch_companies.id"), index=True)
+    source_url: Mapped[str | None] = mapped_column(String(1000))
+    source_type: Mapped[str] = mapped_column(String(120), nullable=False)
+    ats_detected: Mapped[str] = mapped_column(String(120), default="Unknown")
+    status: Mapped[str] = mapped_column(String(80), default="pending")
+    http_status: Mapped[int | None] = mapped_column(Integer)
+    checked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    failure_state: Mapped[str] = mapped_column(Text, default="")
+    item_count: Mapped[int] = mapped_column(Integer, default=0)
+    actor_name: Mapped[str | None] = mapped_column(String(200))
+    actor_version: Mapped[str | None] = mapped_column(String(100))
+    cost_estimate: Mapped[str | None] = mapped_column(String(100))
+    last_run: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class WatchScanRun(TimestampMixin, Base):
+    __tablename__ = "watch_scan_runs"
+
+    tier: Mapped[str] = mapped_column(String(20), index=True)
+    scan_type: Mapped[str] = mapped_column(String(80), default="manual")
+    status: Mapped[str] = mapped_column(String(80), default="pending")
+    started_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    summary: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
 
 
 class JobOpportunity(TimestampMixin, Base):

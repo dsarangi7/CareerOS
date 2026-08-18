@@ -1,0 +1,2634 @@
+{
+  "companies": [
+    {
+      "canonical_name": "CATL",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.catl.com/en/",
+      "official_careers_url": "https://www.catl.com/en/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Germany",
+        "Hungary"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Germany",
+        "Hungary"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "BYD",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.bydglobal.com/",
+      "official_careers_url": "https://www.bydglobal.com/en/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Europe",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Europe",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "LG Energy Solution",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.lgensol.com/",
+      "official_careers_url": "https://www.lgensol.com/en/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "South Korea",
+        "United States",
+        "Poland"
+      ],
+      "major_rnd_locations": [
+        "South Korea",
+        "United States",
+        "Poland"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Panasonic Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.panasonic.com/global/energy/",
+      "official_careers_url": "https://www.panasonic.com/global/energy/recruit.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Japan",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "Japan",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS",
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Samsung SDI",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.samsungsdi.com/",
+      "official_careers_url": "https://www.samsungsdi.com/career.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "South Korea",
+        "Europe",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "South Korea",
+        "Europe",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS",
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "SK On",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.sk-on.com/",
+      "official_careers_url": "https://www.sk-on.com/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "South Korea",
+        "United States",
+        "Hungary"
+      ],
+      "major_rnd_locations": [
+        "South Korea",
+        "United States",
+        "Hungary"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "EVE Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.evebattery.com/",
+      "official_careers_url": "https://www.evebattery.com/en/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Europe"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Europe"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS",
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Gotion High-Tech",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.gotion.com/",
+      "official_careers_url": "https://www.gotion.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "United States",
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "United States",
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Envision AESC",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.aesc-group.com/",
+      "official_careers_url": "https://www.aesc-group.com/en/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Japan",
+        "United States",
+        "United Kingdom",
+        "France",
+        "China"
+      ],
+      "major_rnd_locations": [
+        "Japan",
+        "United States",
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Saft",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.saft.com/",
+      "official_careers_url": "https://www.saft.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "France",
+        "Europe",
+        "United States",
+        "Asia"
+      ],
+      "major_rnd_locations": [
+        "France",
+        "Europe",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS",
+        "marine",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "A123 Systems",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.a123systems.com/",
+      "official_careers_url": "https://www.a123systems.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "China",
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "China",
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Eos Energy Enterprises",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.eose.com/",
+      "official_careers_url": "https://www.eose.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "QuantumScape",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.quantumscape.com/",
+      "official_careers_url": "https://www.quantumscape.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "solid_state_battery"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Solid Power",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://solidpowerbattery.com/",
+      "official_careers_url": "https://solidpowerbattery.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "solid_state_battery"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "SES AI",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://ses.ai/",
+      "official_careers_url": "https://ses.ai/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "South Korea",
+        "China"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "South Korea",
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_ai"
+      ],
+      "company_classification": [
+        "EV",
+        "AI"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "ProLogium Technology",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://prologium.com/",
+      "official_careers_url": "https://prologium.com/career/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Taiwan",
+        "France"
+      ],
+      "major_rnd_locations": [
+        "Taiwan",
+        "France"
+      ],
+      "battery_segment": [
+        "solid_state_battery"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Hithium",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.hithium.com/",
+      "official_careers_url": "https://www.hithium.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Europe",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Europe",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Microvast",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://microvast.com/",
+      "official_careers_url": "https://microvast.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "China",
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "China",
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS",
+        "commercial"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Corvus Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://corvusenergy.com/",
+      "official_careers_url": "https://corvusenergy.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Norway",
+        "Canada",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "Norway",
+        "Canada",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_systems",
+        "marine_battery"
+      ],
+      "company_classification": [
+        "marine"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Wärtsilä",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.wartsila.com/",
+      "official_careers_url": "https://www.wartsila.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Finland",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Finland",
+        "Global"
+      ],
+      "battery_segment": [
+        "marine_electrification",
+        "energy_storage"
+      ],
+      "company_classification": [
+        "marine",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Fluence",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://fluenceenergy.com/",
+      "official_careers_url": "https://fluenceenergy.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Germany",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Germany",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "software"
+      ],
+      "company_classification": [
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "TWAICE",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.twaice.com/",
+      "official_careers_url": "https://www.twaice.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "Germany",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "battery_ai"
+      ],
+      "company_classification": [
+        "battery analytics"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "ACCURE Battery Intelligence",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.accure.net/",
+      "official_careers_url": "https://www.accure.net/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "Germany",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "battery_ai"
+      ],
+      "company_classification": [
+        "battery analytics",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Voltaiq",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.voltaiq.com/",
+      "official_careers_url": "https://www.voltaiq.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "battery_ai"
+      ],
+      "company_classification": [
+        "battery analytics"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Eatron Technologies",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.eatron.com/",
+      "official_careers_url": "https://www.eatron.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom",
+        "Europe"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom",
+        "Europe"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "BMS"
+      ],
+      "company_classification": [
+        "BMS",
+        "battery software"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Tesla Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.tesla.com/energy",
+      "official_careers_url": "https://www.tesla.com/careers/search/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Europe",
+        "China"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Europe",
+        "China"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS",
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Rimac Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.rimac-energy.com/",
+      "official_careers_url": "https://www.rimac-energy.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Croatia",
+        "United Kingdom"
+      ],
+      "major_rnd_locations": [
+        "Croatia",
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "ABB Marine & Ports",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://new.abb.com/marine",
+      "official_careers_url": "https://careers.abb/global/en",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Global"
+      ],
+      "battery_segment": [
+        "marine_electrification",
+        "engineering_software"
+      ],
+      "company_classification": [
+        "marine"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Siemens Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.siemens-energy.com/",
+      "official_careers_url": "https://jobs.siemens-energy.com/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Germany",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_systems",
+        "software"
+      ],
+      "company_classification": [
+        "energy",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Schneider Electric",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.se.com/",
+      "official_careers_url": "https://www.se.com/ww/en/about-us/careers/overview.jsp",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "France",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "France",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_management",
+        "software"
+      ],
+      "company_classification": [
+        "energy",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "daily",
+      "priority_tier": "A",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "CALB",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://en.calb-tech.com/",
+      "official_careers_url": "https://en.calb-tech.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Europe"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Europe"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "SVOLT Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.svolt.cn/",
+      "official_careers_url": "https://www.svolt.cn/en/join.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Sunwoda Electronic",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.sunwoda.com/",
+      "official_careers_url": "https://www.sunwoda.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "EV",
+        "consumer",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Farasis Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.farasis-energy.com/",
+      "official_careers_url": "https://www.farasis-energy.com/en/career/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Germany",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Germany",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "GS Yuasa",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.gs-yuasa.com/",
+      "official_careers_url": "https://www.gs-yuasa.com/en/csr/recruit/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Japan",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Japan",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "industrial",
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Hitachi Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.hitachienergy.com/",
+      "official_careers_url": "https://www.hitachienergy.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Switzerland",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Switzerland",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_systems",
+        "software"
+      ],
+      "company_classification": [
+        "energy",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Clarios",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.clarios.com/",
+      "official_careers_url": "https://www.clarios.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Germany",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Germany",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "automotive",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "EnerSys",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.enersys.com/",
+      "official_careers_url": "https://www.enersys.com/en/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "industrial",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Exide Industries",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.exideindustries.com/",
+      "official_careers_url": "https://www.exideindustries.com/careers.aspx",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "India"
+      ],
+      "major_rnd_locations": [
+        "India"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "automotive",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Amara Raja Energy & Mobility",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.amararajaeandm.com/",
+      "official_careers_url": "https://www.amararajaeandm.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "India"
+      ],
+      "major_rnd_locations": [
+        "India"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "automotive",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "East Penn Manufacturing",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.eastpennmanufacturing.com/",
+      "official_careers_url": "https://www.eastpennmanufacturing.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "industrial",
+        "automotive"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Tianjin Lishen Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://en.lishen.com.cn/",
+      "official_careers_url": "https://en.lishen.com.cn/career.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China"
+      ],
+      "major_rnd_locations": [
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "consumer",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "REPT Battero",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.reptbattero.com/",
+      "official_careers_url": "https://www.reptbattero.com/en/join",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "FREYR Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.freyrbattery.com/",
+      "official_careers_url": "https://www.freyrbattery.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Norway",
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "Norway",
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "BESS",
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Amperex Technology",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.atlbattery.com/",
+      "official_careers_url": "https://www.atlbattery.com/en/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "consumer",
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "XALT Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://xaltenergy.com/",
+      "official_careers_url": "https://xaltenergy.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "marine",
+        "commercial"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Ampace Technology",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.ampace.com/",
+      "official_careers_url": "https://www.ampace.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS",
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "C&D Technologies",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.cdtechno.com/",
+      "official_careers_url": "https://www.cdtechno.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "industrial",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "VARTA",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.varta-ag.com/",
+      "official_careers_url": "https://www.varta-ag.com/en/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "consumer",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Echandia",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://echandia.se/",
+      "official_careers_url": "https://echandia.se/career/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Sweden"
+      ],
+      "major_rnd_locations": [
+        "Sweden"
+      ],
+      "battery_segment": [
+        "marine_battery"
+      ],
+      "company_classification": [
+        "marine"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "EST-Floattech",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://est-floattech.com/",
+      "official_careers_url": "https://est-floattech.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Netherlands"
+      ],
+      "major_rnd_locations": [
+        "Netherlands"
+      ],
+      "battery_segment": [
+        "marine_battery"
+      ],
+      "company_classification": [
+        "marine"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Leclanché",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.leclanche.com/",
+      "official_careers_url": "https://www.leclanche.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Switzerland",
+        "Germany"
+      ],
+      "major_rnd_locations": [
+        "Switzerland",
+        "Germany"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "marine",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Kongsberg Maritime",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.kongsberg.com/maritime/",
+      "official_careers_url": "https://www.kongsberg.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Norway",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Norway",
+        "Global"
+      ],
+      "battery_segment": [
+        "marine_electrification"
+      ],
+      "company_classification": [
+        "marine"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Rolls-Royce Power Systems",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.rolls-royce.com/products-and-services/power-systems.aspx",
+      "official_careers_url": "https://www.rolls-royce.com/careers.aspx",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany",
+        "United Kingdom",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Germany",
+        "United Kingdom",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_systems"
+      ],
+      "company_classification": [
+        "marine",
+        "power systems"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "BAE Systems",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.baesystems.com/",
+      "official_careers_url": "https://www.baesystems.com/en/careers/careers-in-your-country",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom",
+        "United States",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom",
+        "United States",
+        "Global"
+      ],
+      "battery_segment": [
+        "engineering_systems"
+      ],
+      "company_classification": [
+        "marine",
+        "defense"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Volvo Penta",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.volvopenta.com/",
+      "official_careers_url": "https://www.volvogroup.com/en/careers.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Sweden",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Sweden",
+        "Global"
+      ],
+      "battery_segment": [
+        "marine_electrification"
+      ],
+      "company_classification": [
+        "marine",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Qnovo",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.qnovo.com/",
+      "official_careers_url": "https://www.qnovo.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "battery_ai"
+      ],
+      "company_classification": [
+        "battery software"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Monolith AI",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.monolithai.com/",
+      "official_careers_url": "https://www.monolithai.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "industrial_ai",
+        "software"
+      ],
+      "company_classification": [
+        "industrial AI"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "About:Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.aboutenergy.io/",
+      "official_careers_url": "https://www.aboutenergy.io/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "modelling"
+      ],
+      "company_classification": [
+        "battery modelling"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Brill Power",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://brillpower.com/",
+      "official_careers_url": "https://brillpower.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "BMS"
+      ],
+      "company_classification": [
+        "BMS",
+        "battery intelligence"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Breathe Battery Technologies",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.breathebatteries.com/",
+      "official_careers_url": "https://www.breathebatteries.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United Kingdom"
+      ],
+      "major_rnd_locations": [
+        "United Kingdom"
+      ],
+      "battery_segment": [
+        "battery_software",
+        "BMS"
+      ],
+      "company_classification": [
+        "battery software",
+        "BMS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Powin",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://powin.com/",
+      "official_careers_url": "https://powin.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States"
+      ],
+      "major_rnd_locations": [
+        "United States"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Sungrow",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://en.sungrowpower.com/",
+      "official_careers_url": "https://en.sungrowpower.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "power_electronics"
+      ],
+      "company_classification": [
+        "BESS",
+        "inverters"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Nidec Conversion",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.nidec-conversion.com/",
+      "official_careers_url": "https://www.nidec-conversion.com/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Italy",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Italy",
+        "Global"
+      ],
+      "battery_segment": [
+        "energy_storage",
+        "power_electronics"
+      ],
+      "company_classification": [
+        "BESS",
+        "power conversion"
+      ],
+      "preferred_monitoring_frequency": "monday_wednesday_friday",
+      "priority_tier": "B",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Northvolt",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://northvolt.com/",
+      "official_careers_url": "https://northvolt.com/career/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Sweden",
+        "Germany",
+        "Poland"
+      ],
+      "major_rnd_locations": [
+        "Sweden",
+        "Germany",
+        "Poland"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Toshiba",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.global.toshiba/",
+      "official_careers_url": "https://www.global.toshiba/ww/career.html",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Japan",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "Japan",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_cell",
+        "energy_systems"
+      ],
+      "company_classification": [
+        "industrial",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "MGL Energy",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.mglenergy.com/",
+      "official_careers_url": "https://www.mglenergy.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Unknown"
+      ],
+      "major_rnd_locations": [
+        "Unknown"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "battery"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Tianjin EV Energies",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.evebattery.com/",
+      "official_careers_url": "https://www.evebattery.com/en/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China"
+      ],
+      "major_rnd_locations": [
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Tadiran Batteries",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.tadiranbatteries.de/",
+      "official_careers_url": "https://www.tadiranbatteries.de/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "Germany",
+        "Israel"
+      ],
+      "major_rnd_locations": [
+        "Germany",
+        "Israel"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Energizer Holdings",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.energizerholdings.com/",
+      "official_careers_url": "https://www.energizerholdings.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_consumer"
+      ],
+      "company_classification": [
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Duracell",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.duracell.com/",
+      "official_careers_url": "https://www.duracell.com/en-us/careers/",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "United States",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "United States",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_consumer"
+      ],
+      "company_classification": [
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Narada Power Source",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.naradapower.com/",
+      "official_careers_url": "https://www.naradapower.com/career",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "BESS",
+        "industrial"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "CosMX Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.cosmx.com/",
+      "official_careers_url": "https://www.cosmx.com/en/join",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China"
+      ],
+      "major_rnd_locations": [
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "consumer",
+        "EV"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "BAK Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.bakpower.com/",
+      "official_careers_url": "https://www.bakpower.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China"
+      ],
+      "major_rnd_locations": [
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "EV",
+        "consumer"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Leoch International",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.leoch.com/",
+      "official_careers_url": "https://www.leoch.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Global"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Global"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "industrial",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Highstar Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.highstar.com/",
+      "official_careers_url": "https://www.highstar.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China"
+      ],
+      "major_rnd_locations": [
+        "China"
+      ],
+      "battery_segment": [
+        "battery_cell"
+      ],
+      "company_classification": [
+        "battery"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    },
+    {
+      "canonical_name": "Phylion Battery",
+      "alternative_names": [],
+      "parent_company": null,
+      "company_website": "https://www.phylion.com/",
+      "official_careers_url": "https://www.phylion.com/careers",
+      "careers_platform": "Unknown",
+      "ats_type": "Unknown",
+      "countries_of_operation": [
+        "China",
+        "Europe"
+      ],
+      "major_rnd_locations": [
+        "China",
+        "Europe"
+      ],
+      "battery_segment": [
+        "battery_systems"
+      ],
+      "company_classification": [
+        "light EV",
+        "BESS"
+      ],
+      "preferred_monitoring_frequency": "weekly",
+      "priority_tier": "C",
+      "geographic_relevance": "global_or_target_market",
+      "known_language_requirements": "Evidence pending; detect from job descriptions.",
+      "sponsorship_evidence": "Evidence pending; classify per job posting wording.",
+      "scan_status": "pending",
+      "active_job_count": 0,
+      "relevant_job_count": 0,
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "manual_review_status": "not_reviewed"
+    }
+  ]
+}
