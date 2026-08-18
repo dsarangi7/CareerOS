@@ -2,14 +2,16 @@ $ErrorActionPreference = "Stop"
 
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $VenvPython = Join-Path $Root ".venv\Scripts\python.exe"
-$RuntimeDir = Join-Path $Root "private_data\runtime"
+$VenvActivate = Join-Path $Root ".venv\Scripts\Activate.ps1"
+$RuntimeDir = Join-Path $Root ".runtime"
+$LogDir = Join-Path $Root "logs\careeros"
 $PidFile = Join-Path $RuntimeDir "careeros-processes.json"
 $ApiUrl = "http://127.0.0.1:8000/health"
 $DashboardUrl = "http://localhost:8501"
-$ApiLog = Join-Path $RuntimeDir "api.log"
-$ApiErr = Join-Path $RuntimeDir "api.err.log"
-$DashboardLog = Join-Path $RuntimeDir "dashboard.log"
-$DashboardErr = Join-Path $RuntimeDir "dashboard.err.log"
+$ApiLog = Join-Path $LogDir "api.log"
+$ApiErr = Join-Path $LogDir "api.err.log"
+$DashboardLog = Join-Path $LogDir "dashboard.log"
+$DashboardErr = Join-Path $LogDir "dashboard.err.log"
 
 function Fail($Message) {
     Write-Host "CareerOS launcher error: $Message" -ForegroundColor Red
@@ -55,10 +57,14 @@ function Stop-StartedProcesses($Processes) {
 
 Set-Location $Root
 New-Item -ItemType Directory -Force -Path $RuntimeDir | Out-Null
+New-Item -ItemType Directory -Force -Path $LogDir | Out-Null
 
-if (-not (Test-Path -LiteralPath $VenvPython)) {
+if (-not (Test-Path -LiteralPath $VenvPython) -or -not (Test-Path -LiteralPath $VenvActivate)) {
     Fail "Virtual environment not found at .venv. Run: python -m venv .venv; .\.venv\Scripts\Activate.ps1; python -m pip install ."
 }
+
+Write-Host "Activating CareerOS virtual environment..."
+. $VenvActivate
 
 if (Test-Path -LiteralPath $PidFile) {
     $existing = Get-Content -LiteralPath $PidFile -Raw | ConvertFrom-Json
@@ -98,6 +104,8 @@ try {
         -PassThru
     $started += $api
 
+    Wait-ForService "FastAPI backend" $ApiUrl $api
+
     Write-Host "Starting Streamlit dashboard on localhost..."
     $dashboard = Start-Process `
         -FilePath $VenvPython `
@@ -112,14 +120,16 @@ try {
     $state = [PSCustomObject]@{
         api_pid = $api.Id
         dashboard_pid = $dashboard.Id
+        api_start_time = $api.StartTime.ToString("o")
+        dashboard_start_time = $dashboard.StartTime.ToString("o")
         api_url = $ApiUrl
         dashboard_url = $DashboardUrl
         started_at = (Get-Date).ToString("o")
         root = $Root
+        log_dir = $LogDir
     }
     $state | ConvertTo-Json | Set-Content -LiteralPath $PidFile -Encoding UTF8
 
-    Wait-ForService "FastAPI backend" $ApiUrl $api
     Wait-ForService "Streamlit dashboard" $DashboardUrl $dashboard
 
     Write-Host "Opening CareerOS dashboard at $DashboardUrl"

@@ -6,8 +6,11 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 career_os.db
+career_os.db-journal
 data/exports/*
 !data/exports/.gitkeep
+logs/
+.runtime/
 private_input/
 private_output/
 private_data/

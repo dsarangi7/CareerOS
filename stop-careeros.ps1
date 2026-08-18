@@ -10,15 +10,30 @@ if (-not (Test-Path -LiteralPath $PidFile)) {
 }
 
 $state = Get-Content -LiteralPath $PidFile -Raw | ConvertFrom-Json
-$pids = @($state.api_pid, $state.dashboard_pid) | Where-Object { $_ }
+$targets = @(
+    [PSCustomObject]@{ Name = "FastAPI backend"; Pid = $state.api_pid; StartedAt = $state.api_start_time },
+    [PSCustomObject]@{ Name = "Streamlit dashboard"; Pid = $state.dashboard_pid; StartedAt = $state.dashboard_start_time }
+)
 $stopped = @()
 
-foreach ($pid in $pids) {
+foreach ($target in $targets) {
+    $pid = $target.Pid
+    if (-not $pid) {
+        continue
+    }
     $process = Get-Process -Id $pid -ErrorAction SilentlyContinue
     if ($null -eq $process) {
         continue
     }
     try {
+        if ($target.StartedAt) {
+            $recordedStart = [DateTime]::Parse($target.StartedAt)
+            $delta = [Math]::Abs(($process.StartTime.ToUniversalTime() - $recordedStart.ToUniversalTime()).TotalSeconds)
+            if ($delta -gt 2) {
+                Write-Host "Skipping PID ${pid}; it no longer matches the launcher-started $($target.Name) process." -ForegroundColor Yellow
+                continue
+            }
+        }
         Stop-Process -Id $pid -Force
         $stopped += $pid
     } catch {

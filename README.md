@@ -83,13 +83,15 @@ Start both local services safely:
 .\start-careeros.ps1
 ```
 
-The launcher verifies `.venv`, checks dependencies, runs migrations, starts FastAPI on `127.0.0.1:8000`, starts Streamlit on `127.0.0.1:8501`, waits for both services, and opens `http://localhost:8501`.
+The launcher activates `.venv`, checks dependencies, runs migrations, starts FastAPI on `127.0.0.1:8000`, waits for `/health`, starts Streamlit on `127.0.0.1:8501`, waits for the dashboard, writes logs under ignored `logs/careeros/`, and opens `http://localhost:8501`.
 
 Stop only the processes started by the launcher:
 
 ```powershell
 .\stop-careeros.ps1
 ```
+
+The stop script reads `.runtime/careeros-processes.json` and verifies recorded process start times before stopping anything, so unrelated Python processes are left alone.
 
 If PowerShell blocks local scripts, run this once for the current shell:
 
