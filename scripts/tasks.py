@@ -245,6 +245,23 @@ def scan_watchlist_live_tier_a_sample() -> None:
     scan_watchlist_tier("A", live=True, limit=5)
 
 
+def scan_approved_watchlist_live_set() -> None:
+    approved_companies = [
+        "Microvast",
+        "QuantumScape",
+        "Fluence",
+        "TWAICE",
+        "Corvus Energy",
+    ]
+    create_all()
+    with SessionLocal() as session:
+        if session.scalar(select(func.count()).select_from(WatchCompany)) == 0:
+            seed_watchlist_companies(session)
+        summary = run_watch_scan(session, company_names=approved_companies, live=True)
+        session.commit()
+    print(summary)
+
+
 def weekly_watchlist_report() -> None:
     create_all()
     with SessionLocal() as session:
@@ -372,6 +389,7 @@ def main() -> None:
             "scan-tier-b",
             "scan-tier-c",
             "scan-tier-a-live-sample",
+            "scan-approved-live-set",
             "watchlist-weekly-report",
             "api-smoke",
             "dashboard-smoke",
@@ -416,6 +434,8 @@ def main() -> None:
         scan_watchlist_tier("C")
     elif args.command == "scan-tier-a-live-sample":
         scan_watchlist_live_tier_a_sample()
+    elif args.command == "scan-approved-live-set":
+        scan_approved_watchlist_live_set()
     elif args.command == "watchlist-weekly-report":
         weekly_watchlist_report()
     elif args.command == "api-smoke":

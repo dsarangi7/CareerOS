@@ -42,9 +42,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://www.bydglobal.com/",
-      "official_careers_url": "https://www.bydglobal.com/en/careers",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://job-boards.greenhouse.io/byd",
+      "careers_platform": "Greenhouse",
+      "ats_type": "Greenhouse",
       "countries_of_operation": [
         "China",
         "Europe",
@@ -71,7 +71,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {
@@ -374,9 +374,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://www.a123systems.com/",
-      "official_careers_url": "https://www.a123systems.com/careers/",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://www.a123systems.com/join_us/p-12-6.html",
+      "careers_platform": "Company static careers page",
+      "ats_type": "Static HTML",
       "countries_of_operation": [
         "United States",
         "China",
@@ -403,7 +403,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {
@@ -442,9 +442,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://www.quantumscape.com/",
-      "official_careers_url": "https://www.quantumscape.com/careers/",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://careers.quantumscape.com/go/All/9869900/",
+      "careers_platform": "SAP SuccessFactors",
+      "ats_type": "SuccessFactors",
       "countries_of_operation": [
         "United States"
       ],
@@ -465,7 +465,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {
@@ -648,9 +648,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://corvusenergy.com/",
-      "official_careers_url": "https://corvusenergy.com/careers/",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://corvusenergy.teamtailor.com/",
+      "careers_platform": "Teamtailor",
+      "ats_type": "Teamtailor",
       "countries_of_operation": [
         "Norway",
         "Canada",
@@ -676,7 +676,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {
@@ -719,9 +719,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://fluenceenergy.com/",
-      "official_careers_url": "https://fluenceenergy.com/careers/",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://fluenceenergy.wd12.myworkdayjobs.com/fluenceenergy-jobs",
+      "careers_platform": "Workday",
+      "ats_type": "Workday",
       "countries_of_operation": [
         "United States",
         "Germany",
@@ -747,7 +747,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {
@@ -755,9 +755,9 @@
       "alternative_names": [],
       "parent_company": null,
       "company_website": "https://www.twaice.com/",
-      "official_careers_url": "https://www.twaice.com/careers",
-      "careers_platform": "Unknown",
-      "ats_type": "Unknown",
+      "official_careers_url": "https://twaice.jobs.personio.de/?language=en",
+      "careers_platform": "Personio",
+      "ats_type": "Personio",
       "countries_of_operation": [
         "Germany",
         "United States"
@@ -781,7 +781,7 @@
       "scan_status": "pending",
       "active_job_count": 0,
       "relevant_job_count": 0,
-      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical.",
+      "notes": "Seeded public company metadata; careers URL requires live verification before use as canonical. Official careers URL reviewed during pre-scheduler audit; historical scan records unchanged.",
       "manual_review_status": "not_reviewed"
     },
     {

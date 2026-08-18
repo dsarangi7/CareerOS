@@ -208,3 +208,109 @@ Failures routed to manual review:
 - Confirm whether to install Windows Task Scheduler tasks for `CareerOS-JobWatch-*`.
 - Confirm whether live verification should continue company-by-company for the remaining watchlist records.
 - Confirm which countries and sponsorship patterns should receive highest priority once the approved master profile is finalized.
+
+## Company Watchlist Pre-Scheduler Audit - 2026-08-18
+
+### Reconciliation
+
+The earlier controlled live scan used `scan-tier-a-live-sample`, which selected the first five Tier-A companies by canonical-name order. That was not the approved five-company validation set.
+
+Earlier scanned companies:
+
+- A123 Systems
+- ABB Marine & Ports
+- ACCURE Battery Intelligence
+- BYD
+- CATL
+
+Reason A123 Systems and BYD appeared:
+
+- They were in the first five Tier-A records after sorting by `priority_tier` and `canonical_name`.
+- The approved validation set was not intentionally changed.
+- Historical scan records were preserved.
+
+The earlier two captured records were generic careers/about-page text from ABB Marine & Ports and ACCURE Battery Intelligence, not valid individual job postings. They were not deleted; both records were marked `rejected_generic_source`.
+
+### Corrections
+
+- Added explicit `scan-approved-live-set` command for Microvast, QuantumScape, Fluence, TWAICE, and Corvus Energy.
+- Added source failure records for HTTP/access failures instead of summary-only failure tracking.
+- Added raw, normalized, rejected, and duplicate counters.
+- Added stricter validation for individual job postings.
+- Added manual-review queue controls in the dashboard.
+- Updated public watchlist metadata for reviewed official source URLs.
+
+### Approved Five-Company Scan
+
+Command:
+
+```powershell
+python -m scripts.tasks scan-approved-live-set
+```
+
+Result:
+
+- Microvast: `https://microvast.com/careers/`, TLS certificate verification failure in local Python runtime, manual review required.
+- QuantumScape: `https://careers.quantumscape.com/go/All/9869900/`, HTTP 200, SuccessFactors, 26 raw candidates, 2 normalized jobs, 22 rejected candidates.
+- Fluence: `https://fluenceenergy.wd12.myworkdayjobs.com/fluenceenergy-jobs`, HTTP 200, Workday, 0 raw candidates through current HTML connector.
+- TWAICE: `https://twaice.jobs.personio.de/?language=en`, HTTP 200, static HTML/Personio source, 5 raw candidates, 0 normalized jobs, 5 rejected candidates.
+- Corvus Energy: `https://corvusenergy.teamtailor.com/`, HTTP 200, Teamtailor, 11 raw candidates, 0 normalized jobs, 11 rejected candidates.
+
+Approved-set totals:
+
+- Successful page checks: 4.
+- Manual-review failures: 1.
+- Raw job records: 42.
+- Normalized jobs: 2.
+- Duplicates removed: 0.
+- Rejected records: 38.
+- New jobs captured: 2.
+- Changed jobs: 0.
+- Expired jobs: 0.
+
+### A123 and BYD Follow-Up
+
+- A123 Systems alternate official source: `https://www.a123systems.com/join_us/p-12-6.html`, HTTP 200, 27 raw candidates, 0 normalized jobs, 27 rejected candidates.
+- BYD alternate official source: `https://job-boards.greenhouse.io/byd`, HTTP 200, Greenhouse, 9 raw candidates, 4 normalized jobs, 5 rejected candidates.
+
+The original BYD timeout was a response-time/access failure against `https://www.bydglobal.com/en/careers`. It is now resolved by routing BYD North America checks to the official Greenhouse board while preserving the historical timeout source record.
+
+### Validation
+
+Command:
+
+```powershell
+python -m scripts.tasks validate
+```
+
+Result:
+
+- Ruff format check: passed.
+- Ruff lint: passed.
+- Mypy strict check: passed.
+- Pytest: 44 passed, 1 skipped.
+- Security scan: passed.
+- API smoke check: passed.
+- Dashboard smoke check: passed.
+- Docker check: skipped because Docker executable was not available.
+
+Opt-in live integration test:
+
+```powershell
+$env:CAREEROS_RUN_LIVE_WATCHLIST_TESTS='1'
+python -m pytest tests/integration/test_watchlist_live_opt_in.py -q
+```
+
+Result: passed.
+
+### Scheduler Readiness
+
+Recommendation: not ready to install recurring Windows scheduled tasks yet.
+
+Reasons:
+
+- Microvast still requires manual review due local TLS certificate verification failure.
+- Official ATS-specific extraction should be improved for Workday, Personio, and Teamtailor before broad unattended scans.
+- Approved-set scan is now bounded and auditable, but source coverage is not yet mature enough for unattended daily operation.
+
+No Windows scheduled tasks were installed.

@@ -7,8 +7,9 @@ from dataclasses import dataclass
 from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 from pathlib import Path
-from typing import Any
+from typing import Any, TypedDict
 from urllib.error import HTTPError, URLError
+from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
 from sqlalchemy import func, select
@@ -143,6 +144,16 @@ class ScanStatus(StrEnum):
 
 
 @dataclass(frozen=True)
+class FetchResult:
+    url: str
+    status: str
+    http_status: int | None
+    html: str
+    error: str = ""
+    failure_type: str = ""
+
+
+@dataclass(frozen=True)
 class NormalizedJob:
     company_name: str
     title: str
@@ -181,6 +192,12 @@ class NormalizedJob:
             ]
         )
         return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+class HtmlExtractionResult(TypedDict):
+    jobs: list[NormalizedJob]
+    raw_count: int
+    rejected_count: int
 
 
 def seed_watchlist_companies(session: Session, seed_path: Path = SEED_PATH) -> int:
@@ -409,11 +426,17 @@ def run_watch_scan(
     tier: str | None = None,
     company_limit: int | None = None,
     live: bool = False,
+    company_names: list[str] | None = None,
 ) -> dict[str, Any]:
     query = select(WatchCompany).order_by(WatchCompany.priority_tier, WatchCompany.canonical_name)
-    if tier:
+    if company_names:
+        query = query.where(WatchCompany.canonical_name.in_(company_names))
+    elif tier:
         query = query.where(WatchCompany.priority_tier == tier)
     companies = list(session.scalars(query))
+    if company_names:
+        by_name = {company.canonical_name: company for company in companies}
+        companies = [by_name[name] for name in company_names if name in by_name]
     if company_limit is not None:
         companies = companies[:company_limit]
     run = WatchScanRun(
@@ -430,6 +453,11 @@ def run_watch_scan(
         "changed_jobs": 0,
         "expired_jobs": 0,
         "failures": [],
+        "raw_job_records": 0,
+        "normalized_jobs": 0,
+        "duplicates_removed": 0,
+        "rejected_records": 0,
+        "companies_scanned": [],
     }
     for company in companies:
         company.scan_status = ScanStatus.PENDING.value
@@ -437,20 +465,32 @@ def run_watch_scan(
         detected = company.ats_type or company.careers_platform or "Unknown"
         jobs: list[NormalizedJob] = []
         try:
+            fetch = FetchResult(
+                url=company.official_careers_url or "",
+                status=ScanStatus.SUCCEEDED.value if not live else ScanStatus.MANUAL_REVIEW.value,
+                http_status=None,
+                html="",
+            )
+            raw_count = 0
+            rejected_count = 0
             if live and company.official_careers_url:
-                html = fetch_public_page(company.official_careers_url)
+                fetch = fetch_public_page(company.official_careers_url)
+                html = fetch.html
                 detected = detect_ats(company.official_careers_url, html)
-                jobs = extract_jobs_from_html(company, html)
+                extracted = extract_jobs_from_html(company, html)
+                jobs = extracted["jobs"]
+                raw_count = int(extracted["raw_count"])
+                rejected_count = int(extracted["rejected_count"])
             source = WatchJobSource(
                 company_id=company.id,
                 source_url=company.official_careers_url,
                 source_type="official_careers_html" if live else "seed_metadata",
                 ats_detected=detected,
-                status=ScanStatus.SUCCEEDED.value
-                if (html or not live)
-                else ScanStatus.MANUAL_REVIEW.value,
-                http_status=200 if html else None,
+                status=fetch.status if live else ScanStatus.SUCCEEDED.value,
+                http_status=fetch.http_status,
                 checked_at=datetime.now(UTC),
+                failure_state=fetch.error,
+                item_count=len(jobs),
             )
             session.add(source)
             company.ats_type = detected
@@ -461,10 +501,13 @@ def run_watch_scan(
                 else company.last_successful_scan
             )
             company.scan_status = source.status
+            if source.status == ScanStatus.MANUAL_REVIEW.value:
+                company.manual_review_status = "required"
             seen: set[str] = set()
             for normalized in jobs:
                 normalized_key = dedupe_key(normalized)
                 if normalized_key in seen:
+                    summary["duplicates_removed"] += 1
                     continue
                 watch_job, is_new, changed = upsert_watch_job(session, company, normalized)
                 store_watch_assessment(session, watch_job)
@@ -475,11 +518,62 @@ def run_watch_scan(
             company.active_job_count = count_company_jobs(session, company, active=True)
             company.relevant_job_count = count_relevant_jobs(session, company)
             summary["expired_jobs"] += expired
+            summary["raw_job_records"] += raw_count
+            summary["normalized_jobs"] += len(jobs)
+            summary["rejected_records"] += rejected_count
             summary["companies"] += 1
+            summary["companies_scanned"].append(
+                {
+                    "company": company.canonical_name,
+                    "url": company.official_careers_url,
+                    "http_status": source.http_status,
+                    "status": source.status,
+                    "connector": source.source_type,
+                    "ats": detected,
+                    "raw_job_records": raw_count,
+                    "normalized_jobs": len(jobs),
+                    "rejected_records": rejected_count,
+                }
+            )
         except (HTTPError, URLError, TimeoutError, ValueError) as exc:
+            http_status = exc.code if isinstance(exc, HTTPError) else None
+            failure_type = classify_failure(exc)
+            source = WatchJobSource(
+                company_id=company.id,
+                source_url=company.official_careers_url,
+                source_type="official_careers_html" if live else "seed_metadata",
+                ats_detected=detected,
+                status=ScanStatus.MANUAL_REVIEW.value,
+                http_status=http_status,
+                checked_at=datetime.now(UTC),
+                failure_state=f"{failure_type}: {str(exc)[:260]}",
+                item_count=0,
+            )
+            session.add(source)
             company.scan_status = ScanStatus.MANUAL_REVIEW.value
             company.manual_review_status = "required"
-            summary["failures"].append({"company": company.canonical_name, "error": str(exc)[:300]})
+            failure = {
+                "company": company.canonical_name,
+                "url": company.official_careers_url,
+                "http_status": http_status,
+                "failure_type": failure_type,
+                "error": str(exc)[:300],
+            }
+            summary["failures"].append(failure)
+            summary["companies_scanned"].append(
+                {
+                    "company": company.canonical_name,
+                    "url": company.official_careers_url,
+                    "http_status": http_status,
+                    "status": ScanStatus.MANUAL_REVIEW.value,
+                    "connector": source.source_type,
+                    "ats": detected,
+                    "raw_job_records": 0,
+                    "normalized_jobs": 0,
+                    "rejected_records": 0,
+                    "failure_type": failure_type,
+                }
+            )
     run.finished_at = datetime.now(UTC)
     run.status = (
         ScanStatus.SUCCEEDED.value if not summary["failures"] else ScanStatus.MANUAL_REVIEW.value
@@ -489,7 +583,7 @@ def run_watch_scan(
     return summary | {"scan_run_id": run.id}
 
 
-def fetch_public_page(url: str, timeout: int = 15) -> str:
+def fetch_public_page(url: str, timeout: int = 15) -> FetchResult:
     request = Request(
         url, headers={"User-Agent": "CareerOS local validation bot; official careers page check"}
     )
@@ -500,23 +594,135 @@ def fetch_public_page(url: str, timeout: int = 15) -> str:
         body = response.read(1_000_000)
         if not isinstance(body, bytes):
             body = bytes(body)
-        return body.decode("utf-8", errors="replace")
+        return FetchResult(
+            url=response.geturl(),
+            status=ScanStatus.SUCCEEDED.value,
+            http_status=response.status,
+            html=body.decode("utf-8", errors="replace"),
+        )
 
 
-def extract_jobs_from_html(company: WatchCompany, html: str) -> list[NormalizedJob]:
+def extract_jobs_from_html(company: WatchCompany, html: str) -> HtmlExtractionResult:
     text = sanitize_job_text(strip_html(html))
     jobs: list[NormalizedJob] = []
+    raw_count = 0
+    rejected_count = 0
+    for title, href in extract_anchor_candidates(html, company.official_careers_url or ""):
+        if not is_probable_relevant_title(title):
+            continue
+        raw_count += 1
+        candidate = normalize_job(
+            {
+                "title": title,
+                "description": title,
+                "url": href,
+                "original_url": company.official_careers_url,
+            },
+            company.canonical_name,
+            "official_careers_html",
+        )
+        if is_valid_individual_job(candidate):
+            jobs.append(candidate)
+        else:
+            rejected_count += 1
     for line in text.splitlines():
         cleaned = clean_text(line)
         if is_probable_relevant_title(cleaned):
-            jobs.append(
-                normalize_job(
-                    {"title": cleaned, "description": cleaned, "url": company.official_careers_url},
-                    company.canonical_name,
-                    "official_careers_html",
-                )
+            raw_count += 1
+            candidate = normalize_job(
+                {
+                    "title": cleaned,
+                    "description": cleaned,
+                    "original_url": company.official_careers_url,
+                },
+                company.canonical_name,
+                "official_careers_html",
             )
-    return jobs[:50]
+            if is_valid_individual_job(candidate):
+                jobs.append(candidate)
+            else:
+                rejected_count += 1
+    unique_jobs = list({dedupe_key(job): job for job in jobs}.values())
+    return {"jobs": unique_jobs[:50], "raw_count": raw_count, "rejected_count": rejected_count}
+
+
+def extract_anchor_candidates(html: str, base_url: str) -> list[tuple[str, str]]:
+    candidates: list[tuple[str, str]] = []
+    for match in re.finditer(
+        r'(?is)<a[^>]+href=["\'](?P<href>[^"\']+)["\'][^>]*>(?P<label>.*?)</a>', html
+    ):
+        href = urljoin(base_url, match.group("href"))
+        label = clean_text(strip_html(match.group("label")))
+        if not label:
+            continue
+        if any(
+            marker in href.lower()
+            for marker in [
+                "/job/",
+                "jobs/",
+                "jobid",
+                "job_id",
+                "requisition",
+                "gh_jid",
+                "personio",
+                "teamtailor",
+                "myworkdayjobs",
+            ]
+        ):
+            candidates.append((label, href))
+    return candidates
+
+
+def is_valid_individual_job(job: NormalizedJob) -> bool:
+    title = clean_text(job.title)
+    lowered_title = title.lower()
+    lowered_url = (job.application_url or job.original_url).lower()
+    description = clean_text(job.full_description)
+    generic_markers = [
+        "careers",
+        "job search",
+        "search results",
+        "talent community",
+        "privacy",
+        "cookie",
+        "locations worldwide",
+        "who we are",
+        "sign in",
+        "join our talent",
+    ]
+    if not title or title == "Untitled Role":
+        return False
+    if not description or len(description) < 40:
+        return False
+    if any(marker in lowered_title for marker in generic_markers):
+        return False
+    if any(marker in lowered_url for marker in ["privacy", "cookie", "talent-community"]):
+        return False
+    has_specific_source = bool(job.application_url) or bool(job.external_job_id)
+    if not has_specific_source:
+        return False
+    return True
+
+
+def classify_failure(exc: BaseException) -> str:
+    if isinstance(exc, HTTPError):
+        if exc.code == 403:
+            return "http_403_access_restricted"
+        if exc.code == 404:
+            return "http_404_not_found"
+        return f"http_{exc.code}"
+    text = str(exc).lower()
+    if "timed out" in text or "timeout" in text:
+        return "response_timeout"
+    if "dns" in text or "name" in text:
+        return "dns_error"
+    if "tls" in text or "ssl" in text:
+        return "tls_error"
+    if "redirect" in text:
+        return "redirect_error"
+    if isinstance(exc, URLError):
+        return "connection_error"
+    return "unknown_error"
 
 
 def classify_sponsorship_text(source_text: str) -> SponsorshipStatus:

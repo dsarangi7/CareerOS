@@ -12,6 +12,7 @@ from app.watchlist.services import fetch_public_page
     reason="Live careers-page checks are opt-in only.",
 )
 def test_live_careers_page_fetch_opt_in() -> None:
-    html = fetch_public_page("https://www.catl.com/en/careers/", timeout=20)
+    result = fetch_public_page("https://www.catl.com/en/careers/", timeout=20)
 
-    assert html.strip()
+    assert result.html.strip()
+    assert result.http_status == 200

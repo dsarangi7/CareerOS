@@ -27,6 +27,7 @@ python -m scripts.tasks scan-tier-a
 python -m scripts.tasks scan-tier-b
 python -m scripts.tasks scan-tier-c
 python -m scripts.tasks scan-tier-a-live-sample
+python -m scripts.tasks scan-approved-live-set
 python -m scripts.tasks watchlist-weekly-report
 ```
 
@@ -60,3 +61,21 @@ Do not commit retrieved application data, CVs, personal evidence, recruiter comm
 ## Current Limitations
 
 Careers URLs seeded from public company metadata are marked pending until a live scan verifies them. Inaccessible pages, CAPTCHAs, login-only pages, and uncertain ATS detections are routed to manual review.
+
+## Pre-Scheduler Audit Controls
+
+- `scan-tier-a-live-sample` scans the first five Tier-A companies by canonical-name order and is not the approved validation set.
+- `scan-approved-live-set` scans only Microvast, QuantumScape, Fluence, TWAICE, and Corvus Energy.
+- Generic careers homepages, search-result pages, empty descriptions, missing titles, navigation links, privacy pages, talent-community pages, duplicate requisitions, expired postings, and redirected error pages must not be stored as valid active jobs.
+- Every active stored job must have an individual official posting URL or a source-specific external job ID with a verified application URL.
+- 403, timeout, TLS, DNS, redirect, and 404 failures route to manual review and do not disable the company permanently.
+- The dashboard manual-review queue exposes failed URL, failure type, HTTP status, last attempt, retry count, suggested resolution, manual replacement URL, Retry Scan, and Mark Resolved controls.
+
+Reviewed official source updates from the pre-scheduler audit:
+
+- A123 Systems: `https://www.a123systems.com/join_us/p-12-6.html`
+- BYD: `https://job-boards.greenhouse.io/byd`
+- QuantumScape: `https://careers.quantumscape.com/go/All/9869900/`
+- Fluence: `https://fluenceenergy.wd12.myworkdayjobs.com/fluenceenergy-jobs`
+- TWAICE: `https://twaice.jobs.personio.de/?language=en`
+- Corvus Energy: `https://corvusenergy.teamtailor.com/`

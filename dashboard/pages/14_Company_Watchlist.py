@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from datetime import UTC, datetime
+
 import streamlit as st
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from app.db.base import SessionLocal
-from app.models.entities import WatchCompany, WatchJob, WatchJobAssessment
+from app.models.entities import WatchCompany, WatchJob, WatchJobAssessment, WatchJobSource
 from app.watchlist.services import run_watch_scan, seed_watchlist_companies
 
 st.set_page_config(page_title="Company Watchlist", layout="wide")
@@ -27,6 +29,11 @@ with SessionLocal() as session:
         select(WatchJob, WatchJobAssessment)
         .join(WatchJobAssessment, WatchJobAssessment.watch_job_id == WatchJob.id, isouter=True)
         .order_by(WatchJob.retrieval_date.desc().nullslast())
+    ).all()
+    source_rows = session.execute(
+        select(WatchJobSource, WatchCompany)
+        .join(WatchCompany, WatchCompany.id == WatchJobSource.company_id)
+        .order_by(WatchJobSource.created_at.desc())
     ).all()
 
 company_rows = [
@@ -69,6 +76,73 @@ if scan_filter:
     filtered = [row for row in filtered if row["Scan Health"] in scan_filter]
 
 st.dataframe(filtered, use_container_width=True, hide_index=True)
+
+st.subheader("Manual Review Queue")
+manual_rows = []
+for source, company in source_rows:
+    if source.status != "manual_review" and company.manual_review_status != "required":
+        continue
+    retry_count = sum(
+        1 for src, c in source_rows if c.id == company.id and src.status == "manual_review"
+    )
+    suggested = (
+        "Check alternate official careers URL, public ATS endpoint, email alert, or manual import."
+    )
+    if source.http_status == 403:
+        suggested = (
+            "Do not bypass access controls; find alternate official ATS/careers URL "
+            "or use manual/email-alert ingestion."
+        )
+    elif source.failure_state and "timeout" in source.failure_state.lower():
+        suggested = (
+            "Retry later with bounded backoff; check regional official careers alternatives."
+        )
+    manual_rows.append(
+        {
+            "Company": company.canonical_name,
+            "Failed URL": source.source_url,
+            "Failure Type": source.failure_state.split(":", 1)[0]
+            if source.failure_state
+            else source.status,
+            "HTTP Status": source.http_status,
+            "Last Attempt": source.checked_at,
+            "Retry Count": retry_count,
+            "Suggested Resolution": suggested,
+        }
+    )
+st.dataframe(manual_rows, use_container_width=True, hide_index=True)
+
+if companies:
+    manual_company = st.selectbox(
+        "Manual-review action company", [company.canonical_name for company in companies]
+    )
+    replacement_url = st.text_input("Manual replacement URL")
+    col_retry, col_resolve = st.columns(2)
+    with col_retry:
+        if st.button("Retry Scan"):
+            with SessionLocal() as write_session:
+                summary = run_watch_scan(write_session, company_names=[manual_company], live=True)
+                write_session.commit()
+            st.success(f"Retry complete: {summary}")
+    with col_resolve:
+        if st.button("Mark Resolved"):
+            with SessionLocal() as write_session:
+                company = write_session.scalar(
+                    select(WatchCompany).where(WatchCompany.canonical_name == manual_company)
+                )
+                if company is not None:
+                    if replacement_url:
+                        company.official_careers_url = replacement_url
+                    company.manual_review_status = "resolved"
+                    company.scan_status = "pending"
+                    company.updated_at = datetime.now(UTC)
+                    write_session.execute(
+                        update(WatchJobSource)
+                        .where(WatchJobSource.company_id == company.id)
+                        .values(status="resolved")
+                    )
+                    write_session.commit()
+            st.success("Manual-review item marked resolved")
 
 selected_company = (
     st.selectbox("Company detail", [row["Company"] for row in company_rows])

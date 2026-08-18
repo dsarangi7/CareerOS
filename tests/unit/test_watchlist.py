@@ -15,6 +15,7 @@ from app.watchlist.services import (
     classify_sponsorship_text,
     dedupe_key,
     detect_ats,
+    is_valid_individual_job,
     mark_expired_missing_jobs,
     next_due_at,
     normalize_job,
@@ -140,6 +141,72 @@ def test_expired_and_reappearing_jobs(session: Session) -> None:
     assert not is_new_again
     assert not changed_again
     assert reappeared.active_status == "active"
+
+
+def test_invalid_job_records_are_rejected() -> None:
+    invalid_jobs = [
+        NormalizedJob(
+            company_name="Example",
+            title="Careers",
+            original_url="https://example.com/careers",
+            application_url="",
+            source="fixture",
+            full_description="Generic careers homepage with many navigation links.",
+        ),
+        NormalizedJob(
+            company_name="Example",
+            title="Search Results",
+            original_url="https://example.com/jobs/search",
+            application_url="https://example.com/jobs/search",
+            source="fixture",
+            full_description="Search-result page, not an individual posting.",
+        ),
+        NormalizedJob(
+            company_name="Example",
+            title="Battery Engineer",
+            original_url="https://example.com/jobs/123",
+            application_url="https://example.com/jobs/123",
+            source="fixture",
+            full_description="",
+        ),
+        NormalizedJob(
+            company_name="Example",
+            title="Untitled Role",
+            original_url="https://example.com/jobs/123",
+            application_url="https://example.com/jobs/123",
+            source="fixture",
+            full_description="A real description would be much longer than this placeholder.",
+        ),
+        NormalizedJob(
+            company_name="Example",
+            title="Join our talent community",
+            original_url="https://example.com/talent-community",
+            application_url="https://example.com/talent-community",
+            source="fixture",
+            full_description=(
+                "Talent-community registration page rather than an individual job posting."
+            ),
+        ),
+    ]
+
+    assert all(not is_valid_individual_job(job) for job in invalid_jobs)
+
+
+def test_valid_individual_job_requires_specific_application_source() -> None:
+    job = NormalizedJob(
+        company_name="Example",
+        title="Senior Battery Diagnostics Engineer",
+        original_url="https://example.com/jobs/123",
+        application_url="https://example.com/jobs/123",
+        source="fixture",
+        external_job_id="REQ-123",
+        full_description=(
+            "Develop battery diagnostics, Python telemetry analytics, SOC and SOH review for "
+            "marine battery systems with engineering teams."
+        ),
+    )
+
+    assert is_valid_individual_job(job)
 
 
 def test_sponsorship_classification_and_hard_disqualifier_override(session: Session) -> None:
